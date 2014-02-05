@@ -7,8 +7,7 @@ body {
 }
 
 #main {
-
-  background-image: url('http://f5.s.qip.ru/4g5aDyKd.png') repeat-x repeat-y;
+  background-image: url('http://f5.s.qip.ru/4g5aDyKd.png') repeat;
   }
 
 h1, h2, h3, h4, h5, h6 {
