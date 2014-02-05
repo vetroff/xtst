@@ -236,43 +236,12 @@ ab -kc 200 -t 10000 http://host/
 
 
 
-================
-
-поиск  файлов  в  пакетах
-
-
-================
-
-apt-file update
-
-
-
-
-===================
-
-
-
-wget -O /dev/null 
-
-
-
-
-
-
---------------------
-время
-dpkg-reconfigure tzdata
-
 руссификация KDE
 apt-cache search i18n | grep ru
 --------------------
 руссификация  iceweasel
 apt-get install iceweasel-l10n-ru
 --------------------
-webmin
-=============
-
-
 информация о процессоре
 
 cat /proc/cpuinfo
@@ -1333,18 +1302,8 @@ yum distro-sync --releasever=15 обновление
 
    Order Deny,Allow
    Deny from All
-   Allow from 109.207.112.0/255.255.240.0
-   Allow from 87.238.175.122
-
-
-в Fedora
-
-<Directory /usr/share/phpMyAdmin/>
-   Order Deny,Allow
-   Deny from All
-   Allow from 109.207.112.0/255.255.240.0
-   Allow from 87.238.175.122
-</Directory>
+   Allow from 1.2.1.0/255.255.240.0
+   Allow from 8.8.1.1
 
 
 ============================
@@ -1851,7 +1810,7 @@ Install the csf webmin module in:
 
 
 TCP ports currently listening for incoming connections:
-21,77,80,81,443,7777,44010,53675
+
 
 UDP ports currently listening for incoming connections:
 
@@ -1863,15 +1822,7 @@ Don't forget to:
 2. Restart csf and lfd
 3. Set TESTING to 0 once you're happy with the firewall
 
-Adding current SSH session IP address to the csf whitelist in csf.allow:
-Adding 87.238.175.122 to csf.allow only while in TESTING mode (not iptables ACCEPT)
-*WARNING* TESTING mode is enabled - do not forget to disable it in the configuration
-update-rc.d: using dependency based boot sequencing
-insserv: warning: script 'K01rtorrentInit.sh' missing LSB tags and overrides
-insserv: warning: script 'rtorrentInit.sh' missing LSB tags and overrides
-update-rc.d: using dependency based boot sequencing
-insserv: warning: script 'K01rtorrentInit.sh' missing LSB tags and overrides
-insserv: warning: script 'rtorrentInit.sh' missing LSB tags and overrides
+
 
 ============================================
 
@@ -2566,22 +2517,7 @@ ab -kc 10 -t 300 http://xsrv.tk/
 ---------------------
 
 
-wget freevps.us/downloads/bench.sh -O - -o /dev/null|bash
-
-
-wget http://87.238.175.123/files/tst/bench.sh -O - -o /dev/null|bash
-
-
 cat /proc/cpuinfo
-
--------------
- тест  диска
--------------
-
-dd if=/dev/zero of=test bs=64k count=16k conv=fdatasync
-
-CH  0,561791 c, 137 MB/c
-NL  67,3225 c, 15,9 MB/c
 
 ==================
 запуск Nginx
@@ -2602,7 +2538,7 @@ rm -r /var/cache/*
 
 mz eth0 -c 0 -Q 50,100 -A rand -B 195.64.154.47 -t tcp "flags=syn, dp=80"
 
-plowdown -a maingmacc@gmail.com:nick1912 
+plowdown -a mail@gmail.com:pass
 
 /etc/init.d/rtorrentInit.sh start/stop/restart
 
@@ -2611,7 +2547,6 @@ lftp -f /home/_chats/crons/ftp_backups
 
 mz eth0 -c 0 -Q 50,100 -A rand -B 195.64.154.47 -t tcp "flags=syn, dp=80"
 
-ab -kc 200 -t 10000 http://allpsd.com/
 
 
 ==================
@@ -4902,7 +4837,7 @@ ctrl+A D to detach
 
 run-pipeline pipeline.py --concurrent 2 inglar --disable-web-server --context-value bind_address=123.4.5.6
 
-screen su -c "cd /home/archiveteam/wretch-grab/; run-pipeline pipeline.py --concurrent 2 --disable-web-server inglar --context-value bind_address=87.238.175.122" archiveteam
+screen su -c "cd /home/archiveteam/wretch-grab/; run-pipeline pipeline.py --concurrent 2 --disable-web-server inglar --context-value bind_address=0.0.0.0" archiveteam
 
 --------------------
 
@@ -5216,7 +5151,7 @@ tail /var/log/syslog -f | grep "127.0.0.1"
 
 для  Shorewall
 
-*локальный IP адрес 87.238.175.123
+*локальный IP адрес 
 
 tail /var/log/syslog -f | grep "DST=192.168.1.1"
 
@@ -5260,6 +5195,15 @@ If you need to keep your firewall up to date
 https://www.facebook.com/statuscake/posts/328548963920829
 
 https://www.statuscake.com/API/Locations/txt
+
+===========================
+ 
+  mz - packet generator
+
+===========================
+
+ mz - a fast versatile packet generator
+
 
     </pre>
   </div>
