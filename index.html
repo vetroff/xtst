@@ -12,47 +12,133 @@
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
   </head>
-  <body>
+ <body>
+  <div class="wrapper">
+    <pre>
+    ===================================
 
-   <div class="wrapper">
-   	<pre>
-ncdu  - размер папок
+             motd
+
+===================================
+
+nano /etc/pam.d/sshd
+
+закомментировать
+
+# Print the message of the day upon successful login.
+# session    optional     pam_motd.so
+
+
+# если  не  помогает
+
+rm /etc/motd
+touch /etc/motd
+chattr +i /etc/motd
+
+
+------------------------------------
+
+echo "alias agi='apt-get install'" >> ~/.bashrc
+echo "alias agr='apt-get remove'" >> ~/.bashrc
+echo "alias ac='apt-cache'" >> ~/.bashrc
+echo "alias apt='aptitude'" >> ~/.bashrc
+
+
+===================================
+
+       ssh key autorization      
+
+===================================
+
+mkdir ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh
+chmod 400 ~/.ssh/authorized_keys
+nano ~/.ssh/authorized_keys
+
+nano /etc/ssh/sshd_config
+
+------------------------------------
+
+
+mkdir /usr/local/custom
+cd /usr/local/custom
+wget http://nl.xsrv.tk/files/cst/cfly
+wget http://nl.xsrv.tk/files/cst/clr
+wget http://nl.xsrv.tk/files/cst/disk
+wget http://nl.xsrv.tk/files/cst/vpstest
+chmod -R  777 /usr/local/custom
+ln -s /usr/local/custom/* /usr/local/bin/
+cd ~
+clr
 
 
 
-dpkg-reconfigure arno-iptables-firewall
+echo 'net.core.rmem_max=16777216' >> /etc/sysctl.conf
+echo 'net.core.wmem_max=16777216' >> /etc/sysctl.conf
+echo 'net.ipv4.tcp_rmem=4096 87380 16777216' >> /etc/sysctl.conf
+echo 'net.ipv4.tcp_wmem=4096 65536 16777216' >> /etc/sysctl.conf
+sysctl -p
 
-==========================
+
+apt-get install -y nano htop iftop mtr-tiny vnstat rcconf
+
+
+nano /etc/inittab
+
+mkdir /var/www
+mkdir /var/www/files
+mkdir /var/www/files/img
+mkdir /var/www/files/img/bg
+mkdir /var/www/files/img/fav
+mkdir /var/www/files/img/flg
+mkdir /var/www/files/css
+cd /var/www/files/img/bg
+wget http://nl.xsrv.tk/files/img/bg/bg_07.png
+cd /var/www/files/css
+wget http://nl.xsrv.tk/files/css/styles.css
+cd /var/www
+wget http://nl.xsrv.tk/index.html
+
+tar -cvzf /home/vis/backups/html.tar /var/www/html
+
+
+
+wget --no-check-certificate
+
 ==========================
 
       выбор зеркала
 
 ==========================
-==========================
-
 
 
 apt-get install -y apt-spy
 
-apt-spy -d stable -a north-america
+apt-spy -d wheezy -a north-america
 
-apt-spy -d stable -a europe
+apt-spy -d wheezy -a europe
 
-apt-spy -d stable -s de
+apt-spy -d wheezy -s de
 
+apt-spy -d wheezy -s ua
+
+apt-spy -d wheezy -s ru
 
 
 nano /etc/apt/sources.list.d/apt-spy.list
 nano /etc/apt/sources.list
 
-здесь находятся новые зеркала после  теста
 
-/etc/apt/sources.list.d/apt-spy.list
+deb http://mirror.peer1.net/debian/ wheezy main
+deb-src http://mirror.peer1.net/debian/ wheezy main
 
-squezze
+deb http://security.debian.org/ wheezy/updates main
+deb-src http://security.debian.org/ wheezy/updates main
 
-deb http://mirror.yandex.ru/debian/ stable main contrib non-free
-deb-src http://mirror.yandex.ru/debian/ stable main contrib non-free
+# wheezy-updates, previously known as 'volatile'
+deb http://mirror.peer1.net/debian/ wheezy-updates main
+deb-src http://mirror.peer1.net/debian/ wheezy-updates main
 
 
 приоритет  пакетов
@@ -68,14 +154,19 @@ Pin: release a=testing
 Pin-Priority: 650
 
 
+===============================
 
-deb ftp://ftp.ch.debian.org/debian/ stable main #contrib non-free
-deb-src ftp://ftp.ch.debian.org/debian/ stable main #contrib non-free
-deb http://security.debian.org/ stable/updates main
+         apt-key
 
-deb ftp://ftp.ch.debian.org/debian/ stable main contrib non-free
-deb-src ftp://ftp.ch.debian.org/debian/ stable main contrib non-free
+===============================
 
+   add pubkey
+
+
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com <you key>
+
+
+-------------------------------
 
 
 ===============================
@@ -92,8 +183,21 @@ apt-get -t unstable install
 
 ==============================
 
+cat /proc/cpuinfo
 
+================================
 
+       версия  Debian
+
+================================
+
+cat /etc/issue
+
+cat /etc/debian_version
+
+lsb_release -a
+
+---------------------------------
 ===================================
 
   "заморозка"  обновлений пакета
@@ -115,43 +219,19 @@ dd of=test bs=64k count=16k conv=fdatasync
 
 cat /proc/cpuinfo
 
-netstat -lnp
-
-apt-get install -y sysvconfig /Lenny/
-
--------------------
-
-   add pubkey
-
-apt-key adv --keyserver pgp.mit.edu --recv-key  <you key>
 
 
 ----------------
  поиск  файла
 ----------------
 
+find / -name "admin" 
+
 find / -iname 'mc*' -print 2> /dev/null
 
 ----------------
 
-====================
 
-   ssh server
-
-====================
-
-nano /etc/ssh/sshd_config
-
-UseDNS no
-
-
-В файлах
-
-/etc/pam.d/login
-и
-/etc/pam.d/sshd
-
-выпиливаем начисто строчки «session optional pam_motd.so»
 ===================
 
 apache2-utils
@@ -216,17 +296,6 @@ webmin
 cat /proc/cpuinfo
 
 
-информация о файловой системе
-
-df -i
-df
-
-df -h свободное место
-
-
-
-тест файловой системы
-dd if=/dev/zero of=test bs=64k count=16k conv=fdatasync
 ===================
 генерация  локалей
 ===================
@@ -254,19 +323,7 @@ wget http://prdownloads.sourceforge.net/webadmin/webmin_1.590_all.deb
 
 dpkg -i webmin_1.590_all.deb
 
---------------------
 
-добавить ключ
-gpg --keyserver wwwkeys.eu.pgp.net --recv-keys DCF9F87B6DFBCBAE
-gpg --armor --export DCF9F87B6DFBCBAE | apt-key add -
-apt-get update
-
-gpg --export | apt-key add -
-
-или
-
-apt-key adv --keyserver pgp.mit.edu --recv-key  [you key]
------------------------
 
 ========================
  
@@ -1095,6 +1152,12 @@ Webmin > Webmin Configuration > Webmin Modules >
 From local file > /etc/csf/csfwebmin.tgz > Install Module
 
 ======================================
+      arno iptables firewall
+======================================
+
+dpkg-reconfigure arno-iptables-firewall
+
+======================================
      nginx + apache2
 ======================================
 
@@ -1320,44 +1383,58 @@ apt-get -t lenny-backports install "package"
 ==============================
 
 
-apt-get install libglib2.0-0
+apt-get install -y libglib2.0-0
 
 -------
+
+wget http://nl.xsrv.tk/files/pkg/mc_4.8.5-1_i386.deb
+dpkg -i mc_4.8.5-1_i386.deb
+
+wget http://nl.xsrv.tk/files/pkg/mc_4.8.7-1_amd64.deb
+dpkg -i mc_4.8.7-1_amd64.deb
+
 
 создадим символьную  ссылку  для запуска
 
 
 ln -s /usr/local/mc/bin/* /usr/local/bin/
+echo 'export EDITOR=nano' >> ~/.bashrc
+echo 'export TERM=xterm-256color' >> ~/.bashrc
 
 
-ln -s /usr/local/mc-4.7.6/bin/* /usr/local/bin/
+для VestaCP
 
--------
+echo 'export EDITOR=nano' >> ~/.bash_profile
+echo 'export TERM=xterm-256color' >> ~/.bash_profile
 
-для  поддержки цветовых схем
 
-
-nano ~/.bashrc
-
-export TERM=xterm-256color
-export EDITOR=nano
+/usr/local/mc/bin/mc - запуск mc
 
 -------
 
-скины  находятся  здесь
+для  поддержки цветовых схем :
+
+
+echo 'export TERM=xterm-256color' >> ~/.bashrc
+echo 'export EDITOR=nano' >> ~/.bashrc
+
+
+-------
+
 
 cd /usr/local/mc/share/mc/skins
-
-cd /usr/local/mc-4.7.6/share/mc/skins
-
-
 rm gotar.ini
 wget http://nl.xsrv.tk/files/cnf/mc/gotar.ini
+cd ~/.config/mc/
+rm ini
+wget http://nl.xsrv.tk/files/cnf/mc/ini
+cd ~
+
 
 -------
 редактировать скин
 
-nano /usr/local/mc-4.7.6/share/mc/skins/gotar.ini
+nano /usr/local/mc/share/mc/skins/gotar.ini
 -------
 
 конф. файл mc
@@ -1396,6 +1473,10 @@ cd midnight-commander
 ./autogen.sh
 
 ----------------------------------------------------------------
+
+                        возможные  проблемы
+
+----------------------------------------------------------------
 ЕСЛИ  присутствует
 
 проблема в исходниках libmcrypt см. 
@@ -1421,14 +1502,28 @@ export INSTALL_DIR="/usr/local/mc"
 
 echo "INSTALL_DIR=$INSTALL_DIR"
 
-
 ./configure --prefix="$INSTALL_DIR"
+
 
 make
 
-echo "INSTALL_DIR=$INSTALL_DIR"
+checkinstall
 
-make install
+
+----------------------------------------------------------------
+
+                        возможные  проблемы
+
+----------------------------------------------------------------
+при  ошибке  
+
+mkdir: cannot create directory `/usr/local/mc': No such file or directory
+
+использовать  команду
+
+sudo checkinstall --fstrans=0
+
+----------------------------------------------------------------
 
 +++++++++++++++++++
     copy-paste
@@ -1447,7 +1542,7 @@ apt-get install cvs gettext libtool automake pkg-config glib2.0 libslang2-dev
 ./autogen.sh
 
 Задаём путь для установки (можете заменить на свой):
-export INSTALL_DIR="/usr/local/mc-4.7.6"
+export INSTALL_DIR="/usr/local/mc"
 
 
 Запускаем конфигурацию:
@@ -1727,16 +1822,6 @@ chown -R www-data:www-data /var/www/rutorrent/plugins/
 
 ==========================================
 
-     Как изменить SSH-приветсвие
-
-==========================================
-
-nano /etc/motd
-
-
-
-==========================================
-
                TCPDUMP
 
 ==========================================
@@ -1870,47 +1955,6 @@ CBandRemoteSpeed 4000kbps 3 3
 В итоге, что мы имеем максимальная скорость для всего домена 80 Мбит,
 максимум 100 запросов в секунду и 300 соединений.
 Для одного юзера для домена максимум 4Мбита 3 запроса в секунду и 3 соединения.
-
-
-==============================================
-
-
-             Nginx  alias config
-
-
-==============================================
-
-
-    location /u/ {
-    alias /dnl/wup/;
-    autoindex  on;
-    }
-
-
-===============================================
-
-
-
-==============================================
-
-
-  удаление  пакета  установленного  чекрез  CheckInstall
-
-===============================================
-
-
-   dpkg -r пакет
-
-
-
-=========================================
-
-	   MIME  types
-
-=========================================
-
-
-
 
 
 =========================================
@@ -2191,11 +2235,42 @@ find . -type f |xargs grep -l postmaster@nl.xsrv.tk
 
 ==============================
 
-    Удаление  ненужного
+    удаление  ненужного
 
 ==============================
 
-apt-get -y purge apache2-* bind9-* xinetd samba-* nscd-* portmap sendmail-* sasl2-bin
+OpenVZ
+
+apt-get remove apache2 bind9 module-init-tools quota sysklogd klogd rsync xinetd samba nscd portmap sendmail sasl2-bin wide-dhcpv6-client fetchmail udev
+
+apt-get -y purge bind9-* xinetd samba-* nscd-* portmap sendmail-* sasl2-bin wide-dhcpv6-client* fetchmail* 
+
+apt-get -y purge bind9-* xinetd samba-* nscd-* portmap sendmail-* sasl2-bin wide-dhcpv6-client* fetchmail* rsync* rpcbind* quota* udev*
+
+
+KVM
+
+apt-get -y remove bsd-mailx exim4 exim4-base exim4-config exim4-daemon-light nfs-common rpcbind
+
+
+rm /etc/init.d/exim4
+rm /etc/init.d/nfs-common
+rm /etc/init.d/rpcbind
+
+
+минимальная  установка  rcconf
+
+[*] bootlogs
+[*] checkroot-bootclean.sh
+[*] cron
+[*] motd
+[*] procps
+[*] rsyslog
+[*] ssh
+[*] sudo
+[*] vnstat 
+
+
 
 ==============================
 
@@ -2228,6 +2303,9 @@ man du руководство
 ===========================
 
 http://linux.die.net/man/1/dig
+
+
+dig ptr 204.203.202.201.in-addr.arpa
 
 ---------------------------
 
@@ -2700,7 +2778,6 @@ dmesg | grep kvm-clock
 netstat -lnp
 
 cat /sys/devices/system/clocksource/clocksource0/available_clocksource
-
 cat /sys/devices/system/clocksource/clocksource0/current_clocksource
 
 kvm-clock tsc hpet acpi_pm
@@ -2726,7 +2803,21 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet"
 
  должно  выглядеть  так 
 
+
+--------------
+ для Debian 6
+--------------
+
 GRUB_CMDLINE_LINUX_DEFAULT="quiet clocksource=tsc"
+
+--------------
+ для Debian 7
+--------------
+
+nano /etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT="quiet nohz=off highres=off clocksource=tsc"
+
 
  далее  обновим  grub.cfg, выполнив команду
 
@@ -2735,6 +2826,8 @@ update-grub
  для применения параметров требуется перезагрузка
 
 shutdonwn -r now
+
+reboot
 
  проверим,  изменился  ли  clocksource на требуемый
 
@@ -2755,6 +2848,18 @@ dmesg | grep tsc
 
 
 *успешно работает на EDIS KVM
+
+-----------------------------
+
+       для XEN-PV
+
+-----------------------------
+
+nano /boot/grub/menu.lst
+
+строка 
+
+kernel  ---> добавить  в  конец nohz=off highres=off clocksource=tsc
 
 =============================
 
@@ -4181,19 +4286,6 @@ updatedb
 --------------------------------
 
 
-================================
-
-         motd          
-
-================================
-
-nano /etc/motd
-nano /etc/motd.tail
-
---------------------------------
-
-
-
 ===============================
 
         mc    команды
@@ -4215,11 +4307,980 @@ Ctrl+x+p
 cd ~; rm -rf minstall; mkdir minstall; cd minstall; wget --no-check-certificate -O minstall.tar.gz http://www.github.com/downloads/KnightSwarm/Minstall/Latest.tar.gz; tar zxvf minstall.tar.gz; rm minstall.tar.gz
 
 bash minstall.sh clean-packages
+bash minstall.sh install-ssh
+
+------------
+  Install
+------------
+bash minstall.sh install-extra-repositories
+bash minstall.sh clean-packages
+bash minstall.sh install-ssh
+bash minstall.sh install-extra-packages
+------------
+ Configure
+------------
+bash minstall.sh configure-general
+bash minstall.sh configure-ssh
+bash minstall.sh configure-upgrade
+bash minstall.sh configure-user
+------------
+    HTTP
+------------
+bash minstall.sh http-install-exim
+bash minstall.sh http-install-mysql
+bash minstall.sh http-install-nginx
+bash minstall.sh http-install-php
+bash minstall.sh http-install-php-extra
+bash minstall.sh http-configure-mysql
+bash minstall.sh http-configure-nginx
+------------
+   Manage
+------------
+bash minstall.sh manage-add-user
+bash minstall.sh manage-add-host
+bash minstall.sh manage-manage-user
+bash minstall.sh manage-manage-host
+bash minstall.sh manage-remove-host
+
+
+
+CREATE DATABASE drivers;
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP ON drivers.* TO 'root'@'localhost' IDENTIFIED BY '789/*-';
+FLUSH PRIVILEGES;
 
 -------------------------------
-	</pre>
-   </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+         Debian 6
+-------------------------------
+
+# before
+
+root@us1:~# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/simfs            2.0G  489M  1.6G  24% /
+tmpfs                  16M     0   16M   0% /lib/init/rw
+tmpfs                  16M     0   16M   0% /dev/shm
+
+-------------------------------
+
+# after
+
+root@us1:~/minstall# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/simfs            2.0G  190M  1.9G  10% /
+tmpfs                  16M     0   16M   0% /lib/init/rw
+tmpfs                  16M     0   16M   0% /dev/shm
+
+-------------------------------
+
+# after ssh
+
+root@us1:~/minstall# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/simfs            2.0G  213M  1.8G  11% /
+tmpfs                  16M     0   16M   0% /lib/init/rw
+tmpfs                  16M     0   16M   0% /dev/shm
+
+-------------------------------
+
+# after mc
+
+root@us1:~# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/simfs            2.0G  279M  1.8G  14% /
+tmpfs                  16M     0   16M   0% /lib/init/rw
+tmpfs                  16M     0   16M   0% /dev/shm
+
+-------------------------------
+
+# after locales & locales-all
+
+root@us1:~# df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/simfs            2.0G  403M  1.7G  20% /
+tmpfs                  16M     0   16M   0% /lib/init/rw
+tmpfs                  16M     0   16M   0% /dev/shm
+
+-------------------------------
+
+# after upgrade to Debian 7 /apt-get upgrade/
+
+root@us1:~# df -h
+Файловая система      Разм  Исп  Дост  Исп% смонтирована на
+/dev/simfs            2,0G  589M  1,5G  29% /
+tmpfs                  16M     0   16M   0% /lib/init/rw
+tmpfs                  16M     0   16M   0% /dev/shm
+
+-------------------------------
+
+# after upgrade to Debian 7 /apt-get dist-upgrade/
+
+root@us1:~# df -h
+Файловая система Размер Использовано  Дост Использовано% Cмонтировано в
+/dev/simfs         2,0G         560M  1,5G           28% /
+tmpfs               16M            0   16M            0% /lib/init/rw
+tmpfs               16M         4,0K   16M            1% /dev/shm
+/dev/simfs         2,0G         560M  1,5G           28% /run
+/dev/simfs         2,0G         560M  1,5G           28% /run/lock
+tmpfs               16M         4,0K   16M            1% /run/shm
+
+
+
+================================
+
+      размер  каталогов
+
+================================
+
+apt-get  install ncdu
+
+--------------------------------
+
+
+================================
+
+установка нужных версий  пакетов
+
+================================
+
+aptitude install libc6=2.11.3-2 libc-bin=2.11.3-2 locales=нужная версия glibc=нужная версия...
+
+--------------------------------
+
+
+
+================================
+
+
+  версия  Debian
+
+================================
+
+cat /etc/issue
+
+cat /etc/debian_version
+
+lsb_release -a
+
+---------------------------------
+
+
+
+================================
+
+  KVM Network Optimization
+
+================================
+
+If your network connection is limited to 100Mbps, your Network Card configuration
+in SolusVM is probably set to Realtek 8139. Please use the Intel PRO/1000 or 
+Virtio network card setting to be able to use all of your 1Gbps connection.
+
+Additionally please append the following lines to the /etc/sysctl.conf file:
+
+    net.core.rmem_max=16777216
+    net.core.wmem_max=16777216
+    net.ipv4.tcp_rmem=4096 87380 16777216
+    net.ipv4.tcp_wmem=4096 65536 16777216
+
+After saving the file, type sysctl -p for the changes to take effect.
+
+---------------------------------
+
+
+=================================
+
+           iptables
+
+=================================
+
+iptables -A INPUT -d 198.50.245.105 -j DROP
+
+iptables -n -L -v
+
+iptables -n -L -v --line-numbers
+
+http://vasilisc.com/21-examples-iptables
+
+
+198.27.105.227
+
+
+iptables -A INPUT -i eth0 -p UDP --destination-port 67:68 --source-port 67:68 -j DROP
+
+
+iptables -D INPUT 1
+
+
+заблокировать входящие ICMP запросы
+
+iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+
+или
+
+iptables -A INPUT -p icmp --icmp-type 8 -j DROP
+
+------
+
+Enable or allow ICMP ping incoming client request
+
+Rule to enable ICMP ping incoming client request ( assuming that default iptables policy is to drop all INPUT and OUTPUT packets)
+
+SERVER_IP="202.54.10.20"
+iptables -A INPUT -p icmp --icmp-type 8 -s 0/0 -d $SERVER_IP -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -p icmp --icmp-type 0 -s $SERVER_IP -d 0/0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+-------
+
+Allow or enable outgoing ping request
+
+To enable ICMP ping outgoing request use following iptables rule:
+
+SERVER_IP="202.54.10.20"
+iptables -A OUTPUT -p icmp --icmp-type 8 -s $SERVER_IP -d 0/0 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type 0 -s 0/0 -d $SERVER_IP -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+===================================
+
+             GRUB       
+
+===================================
+
+/dev/disk/by-uuid/b5bad93e-0ee3-4da5-a700-8877dea6499e
+
+nano /etc/default/grub
+
+
+#GRUB_DISABLE_LINUX_UUID=true
+
+раскоментировать
+
+update-grub
+-----------------------------------
+
+
+===================================
+
+список файлов пакета  отсутствует
+
+===================================
+
+http://serverfault.com/questions/430682/dpkg-warning-files-list-file-for-package-x-missing
+
+cd /var/cache/apt/archives/
+
+
+dpkg-deb -c /var/cache/apt/archives/libc6_2.13-38_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libc6:i386.list
+dpkg-deb -c /var/cache/apt/archives/libselinux1_2.1.9-5_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libselinux1:i386.list
+dpkg-deb -c /var/cache/apt/archives/gcc-4.7-base_4.7.2-5_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/gcc-4.7-base:i386.list
+dpkg-deb -c /var/cache/apt/archives/libbz2-1.0_1.0.6-4_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libbz2-1.0:i386.list
+dpkg-deb -c /var/cache/apt/archives/libdb5.1_5.1.29-5_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libdb5.1:i386.list
+dpkg-deb -c /var/cache/apt/archives/liblzma5_5.1.1alpha+20120614-2_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/liblzma5:i386.list
+dpkg-deb -c /var/cache/apt/archives/libgcc1_4.7.2-5_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libgcc1:i386.list
+dpkg-deb -c /var/cache/apt/archives/libsemanage1_2.1.6-6_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libsemanage1:i386.list
+dpkg-deb -c /var/cache/apt/archives/libpam-modules_1.1.3-7.1_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libpam-modules:i386.list
+dpkg-deb -c /var/cache/apt/archives/libsepol1_2.1.4-3_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libsepol1:i386.list
+dpkg-deb -c /var/cache/apt/archives/libpam0g_1.1.3-7.1_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libpam0g:i386.list
+dpkg-deb -c /var/cache/apt/archives/libustr-1.0-1_1.0.4-3_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libustr-1.0-1:i386.list
+dpkg-deb -c /var/cache/apt/archives/libavahi-common-data_0.6.31-2_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libavahi-common-data:i386.list
+dpkg-deb -c /var/cache/apt/archives/libtinfo5_5.9-10_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libtinfo5:i386.list
+dpkg-deb -c /var/cache/apt/archives/libblkid1_2.20.1-5.3_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libblkid1:i386.list
+dpkg-deb -c /var/cache/apt/archives/libslang2_2.2.4-15_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libslang2:i386.list
+dpkg-deb -c /var/cache/apt/archives/libuuid1_2.20.1-5.3_i386.deb | awk {'print $6'} | cut -f2- -d. | sed 's|^/$|/.|' | sed 's|/$||' > /var/lib/dpkg/info/libuuid1:i386.list
+
+
+wget http://ftp.us.debian.org/debian/pool/main/e/eglibc/libc6_2.13-38_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/libs/libselinux/libselinux1_2.1.9-5_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/g/gcc-4.7/gcc-4.7_4.7.2-5_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/b/bzip2/libbz2-1.0_1.0.6-4_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/d/db/libdb5.1_5.1.29-5_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/x/xz-utils/liblzma5_5.1.1alpha+20120614-2_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/g/gcc-4.7/libgcc1_4.7.2-5_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/libs/libsemanage/libsemanage1_2.1.6-6_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/p/pam/libpam-modules_1.1.3-7.1_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/libs/libsepol/libsepol1_2.1.4-3_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/p/pam/libpam0g_1.1.3-7.1_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/u/ustr/libustr-1.0-1_1.0.4-3_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/a/avahi/libavahi-common-data_0.6.31-2_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/n/ncurses/libtinfo5_5.9-10_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/u/util-linux/libblkid1_2.20.1-5.3_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/s/slang2/libslang2_2.2.4-15_i386.deb
+wget http://ftp.us.debian.org/debian/pool/main/u/util-linux/libuuid1_2.20.1-5.3_i386.deb
+
+
+-----------------------------------
+
+
+===================================
+
+ ошибка locales  на 32Mb Debian
+
+===================================
+
+apt-get install locales locales-all
+
+-----------------------------------
+
+
+===================================
+
+              TOR
+
+===================================
+
+tor --hash-password <password>
+
+deb http://deb.torproject.org/torproject.org wheezy  main
+deb http://deb.torproject.org/torproject.org experimental-wheezy main
+
+gpg --keyserver keys.gnupg.net --recv 886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
+
+apt-get update
+apt-get install tor tor-geoipdb
+
+
+-----------------------------------
+
+
+====================================
+
+            mpstat
+
+====================================
+
+
+mpstat -P ALL 1 100
+
+
+
+====================================
+
+        Load  average
+
+====================================
+
+http://www.webhostingtalk.com/showpost.php?p=8345459&postcount=20
+
+------------------------------------
+
+
+====================================
+
+            minstall
+
+====================================
+
+wget -O /opt/minstall.tar.gz --no-check-certificate http://www.github.com/KnightSwarm/Minstall/archive/master.tar.gz; mkdir /opt/minstall/; tar -C /opt/minstall -f /opt/minstall.tar.gz --strip-components 1 -v -x -z; ln -s /opt/minstall/libraries/default/launcher.sh /usr/local/bin/minstall
+
+удаление скрипта
+
+rm -rf /opt/minstall /opt/minstall.tar.gz /usr/local/bin/minstall
+
+cd /opt/minstall
+
+команды
+
+https://github.com/KnightSwarm/Minstall#sample-commands
+
+--------------------------------------
+
+https://github.com/Xeoncross/lowendscript
+
+wget --no-check-certificate https://raw.github.com/Xeoncross/lowendscript/master/setup-debian.sh
+
+
+https://github.com/Mins/TuxLite
+------------------------------------
+
+
+======================================
+
+             gcitul
+
+======================================
+
+gcutil --service_version="v1beta16" --project="glass-stratum-777" ssh --zone="europe-west1-a" --ssh_user="vis"  --s
+
+--------------------------------------
+
+
+
+======================================
+
+           PPTP script     
+
+======================================
+
+wget https://raw.github.com/cwaffles/ezpptp/master/ezpptp.sh
+chmod +x ezpptp.sh && ./ezpptp.sh
+
+OpenVZ
+
+wget http://nl.xsrv.tk/files/scr/pptp_openvz.sh
+chmod +x pptp_openvz.sh && ./pptp_openvz.sh
+
+KVM
+
+wget http://nl.xsrv.tk/files/scr/pptp_kvm.sh
+chmod +x pptp_kvm.sh && ./pptp_kvm.sh
+
+service pptpd start
+--------------------------------------
+
+
+===========================================
+
+Could not load host key: /etc/ssh/ssh_host_ecdsa_key
+
+===========================================
+
+ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' 
+
+-------------------------------------------
+
+
+=======================================
+
+              dig
+
+=======================================
+запрос  определенного DNS о записи
+
+dig @8.8.8.8 xsrv.tk A
+
+
+---------------------------------------
+
+
+=======================================
+
+      apache2 mod_expires
+
+=======================================
+
+a2enmod headers
+a2enmod expires
+
+---------------------------------------
+
+=======================================
+
+           vsftpd  500 OOPS
+
+=======================================
+1.
+echo "deb http://ftp.cyconet.org/debian wheezy-updates main non-free contrib" >> /etc/apt/sources.list.d/wheezy-updates.cyconet.list;
+
+apt-get update
+apt-get install -t wheezy-updates debian-cyconet-archive-keyring vsftpd
+
+2.
+http://ftp.us.debian.org/debian/pool/main/v/vsftpd/vsftpd_3.0.2-3_i386.deb
+http://ftp.us.debian.org/debian/pool/main/v/vsftpd/vsftpd_3.0.2-3_amd64.deb
+
+dpkg -i vsftpd_3.0.2-3_i386.deb
+dpkg -i vsftpd_3.0.2-3_amd64.deb
+
+echo "allow_writeable_chroot=YES" >> /etc/vsftpd.conf
+echo "seccomp_sandbox=NO" >> /etc/vsftpd.conf
+service vsftpd reload
+
+---------------------------------------
+
+=======================================
+
+        очистка  файла
+
+=======================================
+
+echo "" > file.txt
+
+---------------------------------------
+
+
+apt-get remove mysql-client-5.5 mysql-server-5.5  mysql-server-core-5.5 mysql-server  mysql-common mysql-client libmysqlclient18
+
+
+
+
+--------------------------------------
+apt-get install apache2 apache2-doc apache2-mpm-prefork apache2-utils libexpat1 ssl-cert libapache2-mod-php5 libapache2-mod-ruby php5 php5-common php5-curl php5-dev php5-gd php5-idn php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-mhash php5-ming php5-mysql php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl phpmyadmin
+
+
+
+=======================================
+
+       заблокировать  IP
+
+=======================================
+
+iptables -A INPUT -s 95.240.157.13 -j REJECT
+
+
+iptables-save > /etc/iptables/rules.v4
+ip6tables-save > /etc/iptables/rules.v6
+
+http://www.microhowto.info/howto/make_the_configuration_of_iptables_persistent_on_debian.html
+
+---------------------------------------
+
+
+=======================================
+
+            PDNSD  pdnsd
+
+=======================================
+
+sudo ls -l /var/cache/pdnsd/pdnsd.cache
+
+Для интереса можно время от времени проверять размер кэша (/var/cache/pdnsd/pdnsd.cache).
+С каждым днем использования он должен становиться все больше и больше.
+
+sudo pdnsd-ctl status
+
+Просмотр текущих загруженных настроек.
+
+http://habrahabr.ru/post/159013/
+http://lapitoop.ru/full-faq-pdnsd/
+https://wiki.archlinux.org/index.php/Pdnsd
+http://www.opennet.ru/man.shtml?topic=pdnsd.conf&category=5&russian=0
+
+pdnsd-ctl record test.net delete
+
+========================================
+
+              Rage 4
+
+========================================
+
+curl "https://secure.rage4.com/secure/webhook/?key=0e11a932431ded4e28c545748f02422e&status=0" >/dev/null 2>&1
+
+
+*/5 * * * * /usr/local/custom/rage4.sh >/dev/null 2>&1
+
+----------------------------------------
+
+
+========================================
+
+            запуск  nohup
+
+========================================
+
+nohup ./checker.sh >/dev/null 2>&1 &
+
+параметры
+
+>/dev/null - без вывода
+& - переводит процес в фоновый режим
+
+
+
+========================================
+
+             chmod   папки
+
+========================================
+
+cd /home/some_dir
+Заходим в целевую директорию
+
+chmod -R 644 *
+Массово устанавливаем chmod 644 на всё
+
+find . -type d -exec chmod 0755 {} ';'
+
+----------------------------------------
+
+
+========================================
+
+            ArchiveTeam
+
+========================================
+
+Wretch LH1 RU2 UA1 GCE US4 US6 NLx2 NL2 CZ 
+
+adduser --system --group --shell /bin/bash archiveteam
+
+apt-get install -y git-core libgnutls-dev lua5.1 liblua5.1-0 liblua5.1-0-dev screen python-dev python-pip bzip2 zlib1g-dev
+
+pip install seesaw
+
+su -c "cd /home/archiveteam; git clone https://github.com/ArchiveTeam/wretch-grab.git; cd wretch-grab; ./get-wget-lua.sh" archiveteam
+
+screen -S WRETCH su -c "cd /home/archiveteam/wretch-grab/; run-pipeline pipeline.py --concurrent 2 --disable-web-server inglar" archiveteam
+
+
+---------------------
+ctrl+A D to detach
+---------------------
+
+несколько IP адресов
+
+run-pipeline pipeline.py --concurrent 2 inglar --disable-web-server --context-value bind_address=123.4.5.6
+
+screen su -c "cd /home/archiveteam/wretch-grab/; run-pipeline pipeline.py --concurrent 2 --disable-web-server inglar --context-value bind_address=87.238.175.122" archiveteam
+
+--------------------
+
+
+удаление
+
+------------------
+
+userdel -r archiveteam
+pip uninstall -y seesaw tornado simplejson tornadio2 ordereddict
+apt-get purge -y git-core libgnutls-dev lua5.1 liblua5.1-0 liblua5.1-0-dev python-dev python-pip bzip2 zlib1g-dev
+apt-get -y autoremove
+
+=============================
+
+         screen
+
+=============================
+https://wiki.archlinux.org/index.php/GNU_Screen_%28%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9%29
+
+screen -d
+screen -r
+
+
+=============================
+
+
+       pptp client
+
+=============================
+
+pon <vpn_name> debug dump logfd 2 nodetach
+
+pon us1 debug dump logfd 2 nodetach
+
+route add default dev ppp0
+
+
+============================
+      
+        opvenvpn
+
+============================
+
+ca /etc/openvpn/ca.crt
+
+
+cp /root/ca.crt /etc/openvpn/ca.crt
+
+
+echo "ca /etc/openvpn/ca.crt" >> /<file_name>
+
+
+openvpn --config 
+
+openvpn --auth-user-pass --config 
+
+
+screen su -c "openvpn --config uk.ovpn" root
+
+
+
+
+cd ~/.vpn/
+
+
+LH1 - vpn.sh us_dallas_tcp
+LH2 - vpngate_se_94.255.136.249_tcp_995.ovpn
+LH3 - vpn.sh ch_tcp
+LH4 - vpngate_jp_116.94.157.229_tcp_1610.ovpn
+
+
+UA2
+LH1 - vpn.sh uk2_tcp
+LH2 - vpngate_se_81.226.4.75_tcp_995.ovpn
+LH3 - vpngate_us_mo_23.255.132.219_tcp_995.ovpn
+
+
+============================================
+
+           virtualbox
+
+============================================
+
+apt-get install linux-headers-$(uname -r)
+
+--------------------------------------------
+
+============================================
+
+              minstall
+
+============================================
+
+https://github.com/KnightSwarm/Minstall
+
+wget --no-check-certificate -O minstall.tar.gz http://www.github.com/KnightSwarm/Minstall/archive/2.5.7.tar.gz; tar zxvf minstall.tar.gz; rm minstall.tar.gz; cd Minstall-2.5.7
+
+
+============================================
+
+              VestaCP
+
+============================================
+
+https://forum.vestacp.com/viewtopic.php?f=13&t=3750
+
+https://forum.vestacp.com/viewtopic.php?f=43&t=3541&start=120
+
+DNS
+
+https://forum.vestacp.com/viewtopic.php?f=13&t=3750
+
+adduser --system --group --shell /bin/bash dns-cluster
+
+v-add-remote-dns-host ns.domain.com 8083 admin pass
+
+
+
+# Connect to your server as root via SSH
+ssh root@your.server
+
+# Download installation script
+curl -O http://vestacp.com/pub/vst-install.sh
+
+wget http://vestacp.com/pub/vst-install.sh
+
+# Run it
+bash vst-install.sh
+
+-------------------------------
+  https://217.12.199.125:8083
+  username: admin
+  password: bLhXPnGQvV
+-------------------------------
+
+-------------------------------
+  https://207.234.139.45:8083
+  username: admin
+  password: iP4x7UbTp8
+-------------------------------
+
+для установки на сервер с 128Mb памяти:
+
+vst-install-debian.sh
+
+изменить блок
+
+# Check server type
+
+
+E: Существуют проблемы, а параметр -y указан без --force-yes
+
+искать строку
+
+apt-get -y install $software
+
+заменить на 
+
+apt-get --force-yes install $software
+
+
+======================================
+
+wget http://git.io/vpn --no-check-certificate -O openvpn-install.sh; chmod +x openvpn-install.sh; ./openvpn-install.sh
+
+======================================
+
+
+[===================================]
+
+       resolv.conf OpenVZ
+
+[===================================]
+
+
+edit /etc/resolv.conf
+
+add these lines:
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+
+close the file. Run this command:
+
+chattr +i /etc/resolv.conf
+
+then run:
+
+service network restart
+
+
+[===================================]
+
+            iptables
+
+[===================================]
+
+iptables -L -n -v --line-numbers
+
+
+The actual iptables rules are created and customized on the command line with the command iptables for IPv4 and ip6tables for IPv6.
+
+These can be saved in a file with the command iptables-save for IPv4.
+
+Debian/Ubuntu: iptables-save > /etc/iptables/rules.v4
+RHEL/CentOS: iptables-save > /etc/sysconfig/iptables
+
+These files can be loaded again with the command iptables-restore for IPv4.
+
+Debian/Ubuntu: iptables-restore < /etc/iptables/rules.v4
+RHEL/CentOS: iptables-restore < /etc/sysconfig/iptables
+
+If you would also like to use IPv6 rules, these can be stored in a separate file.
+
+Debian/Ubuntu: iptables-save > /etc/iptables/rules.v6
+RHEL/CentOS: iptables-save > /etc/sysconfig/ip6tables
+
+
+Since Ubuntu 10.04 LTS (Lucid) and Debian 6.0 (Squeeze) there is a package with the name "iptables-persistent" which takes over the automatic loading of the saved iptables rules. To do this, the rules must be saved in the file /etc/iptables/rules.v4 for IPv4 and /etc/iptables/rules.v6 for IPv6.
+
+For use, the package must simply be installed.
+
+apt-get install iptables-persistent
+
+
+------------------------
+
+Set to default
+
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -F
+iptables -X
+
+-----------------------------------------------------
+
+https://blog.ls20.com/securing-your-asterisk-voip-server-with-iptables/
+
+
+Set default policies:
+
+nano /etc/iptables/rules.v4
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:ICMPALL - [0:0]
+:IPSPF - [0:0]
+:ASIP - [0:0]
+:DPTS - [0:0]
+:RLMSET - [0:0]
+:ZREJ - [0:0]
+COMMIT
+
+-----------------------------------------------------
+
+The INPUT chain. replace YOUR_SSH_PORT with the port you chose:
+
+iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m recent --rcheck --name RLM --seconds 600 --hitcount 1 -j DROP
+iptables -A INPUT -p icmp --icmp-type 255 -j ICMPALL
+iptables -A INPUT -i eth+ -j IPSPF
+iptables -A INPUT -p tcp --dport 77 -j ACCEPT
+iptables -A INPUT -j ASIP
+iptables -A INPUT -j DPTS
+iptables -A INPUT -m limit --limit 10/min -j LOG
+iptables -A INPUT -j ZREJ
+
+-----------------------------------------------------
+
+The ICMPALL chain:
+
+iptables -A ICMPALL -p icmp --fragment -j DROP           
+iptables -A ICMPALL -p icmp --icmp-type 0 -j ACCEPT
+iptables -A ICMPALL -p icmp --icmp-type 3 -j ACCEPT
+iptables -A ICMPALL -p icmp --icmp-type 4 -j ACCEPT
+iptables -A ICMPALL -p icmp --icmp-type 8 -j ACCEPT
+iptables -A ICMPALL -p icmp --icmp-type 11 -j ACCEPT
+iptables -A ICMPALL -j DROP
+
+Here, we only allow ICMP types that are commonly used and relatively safe, while blocking the rest.
+
+-----------------------------------------------------
+
+The IPSPF chain:
+
+==========================
+
+   iptables ssh
+
+==========================
+
+ограничить подключение подсетью
+
+iptables -A INPUT -s 10.0.0.0/20 -i eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+
+
+==========================
+
+   просмотр syslog
+
+==========================
+
+интерактивный  вывод
+
+tail /var/log/syslog -f | grep "127.0.0.1"
+
+
+для  Shorewall
+
+*локальный IP адрес 87.238.175.123
+
+tail /var/log/syslog -f | grep "DST=192.168.1.1"
+
+*удалённый IP адрес 109.207.123.5
+
+tail /var/log/syslog -f | grep "DST=192.168.1.1"
+
+*локальный порт 22
+
+tail /var/log/syslog -f | grep "DPT=22"
+
+*удалённый порт 80
+
+tail /var/log/syslog -f | grep "SPT=22"
+
+==========================
+
+      shorewall
+
+==========================
+
+показать  правила  цепочки:
+
+shorewall show net2fw
+
+
+==========================
+
+ StatusCake & firewall
+
+==========================
+
+What Test Locations Do You Have?
+
+http://kb.statuscake.com/what-test-locations-do-you-have/
+
+-----------
+
+If you need to keep your firewall up to date
+
+https://www.facebook.com/statuscake/posts/328548963920829
+
+https://www.statuscake.com/API/Locations/txt
+
+    </pre>
+  </div>
+  <script src="javascripts/scale.fix.js"></script>
+ </body>
 </html>
