@@ -15,7 +15,7 @@
  <body>
   <div class="wrapper">
     <pre>
-    ===================================
+===================================
 
              motd
 
@@ -35,14 +35,12 @@ rm /etc/motd
 touch /etc/motd
 chattr +i /etc/motd
 
-
 ------------------------------------
 
 echo "alias agi='apt-get install'" >> ~/.bashrc
 echo "alias agr='apt-get remove'" >> ~/.bashrc
 echo "alias ac='apt-cache'" >> ~/.bashrc
 echo "alias apt='aptitude'" >> ~/.bashrc
-
 
 ===================================
 
@@ -85,23 +83,6 @@ apt-get install -y nano htop iftop mtr-tiny vnstat rcconf
 
 
 nano /etc/inittab
-
-mkdir /var/www
-mkdir /var/www/files
-mkdir /var/www/files/img
-mkdir /var/www/files/img/bg
-mkdir /var/www/files/img/fav
-mkdir /var/www/files/img/flg
-mkdir /var/www/files/css
-cd /var/www/files/img/bg
-wget http://nl.xsrv.tk/files/img/bg/bg_07.png
-cd /var/www/files/css
-wget http://nl.xsrv.tk/files/css/styles.css
-cd /var/www
-wget http://nl.xsrv.tk/index.html
-
-tar -cvzf /home/vis/backups/html.tar /var/www/html
-
 
 
 wget --no-check-certificate
