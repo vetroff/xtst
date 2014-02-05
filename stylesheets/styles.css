@@ -9,7 +9,9 @@ body {
 
 .title {
   width:250px;
-  margin:0 auto 25px;
+  margin:12px auto 25px;
+  font-weight:700;
+  font-size:16px;
   color:rgba(240,240,240,1);
 }
 
@@ -77,7 +79,7 @@ code, pre {
 
 pre {
   padding:8px 15px;
-  background: rgba(252,252,252,1);  
+  background: rgba(254,254,254,.95);  
   border-radius:5px;
   border:1px solid #e5e5e5;
   overflow-x: auto;
