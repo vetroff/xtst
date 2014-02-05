@@ -7,11 +7,6 @@ body {
   background-color:rgba(0,0,0,.85);
 }
 
-header-main {
-  width:325px;
-  margin:20px auto 25px;
-}
-
 .title {
   width:250px;
   /*margin:20px auto 25px;*/
@@ -21,10 +16,6 @@ header-main {
   color:rgba(240,240,240,1);
 }
 
-#deblogo {
-   width: 50px;
-   background-image: url('http://f6.s.qip.ru/4g5aDyKe.png');
-}
 
 /*#main {
   width:100%;
