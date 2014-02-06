@@ -1,0 +1,229 @@
+===================================
+
+             motd
+
+===================================
+
+nano /etc/pam.d/sshd
+
+закомментировать
+
+# Print the message of the day upon successful login.
+# session    optional     pam_motd.so
+
+
+# если  не  помогает
+
+rm /etc/motd
+touch /etc/motd
+chattr +i /etc/motd
+
+------------------------------------
+
+echo "alias agi='apt-get install'" >> ~/.bashrc
+echo "alias agr='apt-get remove'" >> ~/.bashrc
+echo "alias ac='apt-cache'" >> ~/.bashrc
+echo "alias apt='aptitude'" >> ~/.bashrc
+
+===================================
+
+       ssh key autorization      
+
+===================================
+
+mkdir ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh
+chmod 400 ~/.ssh/authorized_keys
+nano ~/.ssh/authorized_keys
+
+nano /etc/ssh/sshd_config
+
+------------------------------------
+
+
+mkdir /usr/local/custom
+cd /usr/local/custom
+wget http://nl.xsrv.tk/files/cst/cfly
+wget http://nl.xsrv.tk/files/cst/clr
+wget http://nl.xsrv.tk/files/cst/disk
+wget http://nl.xsrv.tk/files/cst/vpstest
+chmod -R  777 /usr/local/custom
+ln -s /usr/local/custom/* /usr/local/bin/
+cd ~
+clr
+
+
+
+echo 'net.core.rmem_max=16777216' >> /etc/sysctl.conf
+echo 'net.core.wmem_max=16777216' >> /etc/sysctl.conf
+echo 'net.ipv4.tcp_rmem=4096 87380 16777216' >> /etc/sysctl.conf
+echo 'net.ipv4.tcp_wmem=4096 65536 16777216' >> /etc/sysctl.conf
+sysctl -p
+
+
+apt-get install -y nano htop iftop mtr-tiny vnstat rcconf
+
+
+nano /etc/inittab
+
+
+wget --no-check-certificate
+
+==========================
+
+      выбор зеркала
+
+==========================
+
+
+apt-get install -y apt-spy
+
+apt-spy -d wheezy -a north-america
+
+apt-spy -d wheezy -a europe
+
+apt-spy -d wheezy -s de
+
+apt-spy -d wheezy -s ua
+
+apt-spy -d wheezy -s ru
+
+
+nano /etc/apt/sources.list.d/apt-spy.list
+nano /etc/apt/sources.list
+
+
+deb http://mirror.peer1.net/debian/ wheezy main
+deb-src http://mirror.peer1.net/debian/ wheezy main
+
+deb http://security.debian.org/ wheezy/updates main
+deb-src http://security.debian.org/ wheezy/updates main
+
+# wheezy-updates, previously known as 'volatile'
+deb http://mirror.peer1.net/debian/ wheezy-updates main
+deb-src http://mirror.peer1.net/debian/ wheezy-updates main
+
+
+приоритет  пакетов
+
+nano /etc/apt/preferences
+
+Package: *
+Pin: release a=stable
+Pin-Priority: 700
+
+Package: *
+Pin: release a=testing
+Pin-Priority: 650
+
+
+===============================
+
+         apt-key
+
+===============================
+
+   add pubkey
+
+
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 
+
+
+-------------------------------
+
+
+===============================
+
+выбор нестабильного дистрибутива
+
+===============================
+
+при установке пакетов из тестируемого / нестабильного дистрибутива, просто используйте ключ -t:
+
+
+apt-get -t testing install
+apt-get -t unstable install
+
+==============================
+
+cat /proc/cpuinfo
+
+================================
+
+       версия  Debian
+
+================================
+
+cat /etc/issue
+
+cat /etc/debian_version
+
+lsb_release -a
+
+---------------------------------
+===================================
+
+  "заморозка"  обновлений пакета
+
+===================================
+
+echo "mc hold" | dpkg --set-selections
+dpkg --get-selections | grep mc
+
+------------------------------------
+
+
+
+invoke-rc.d arno-iptables-firewall start
+
+-------------------------------------
+
+dd of=test bs=64k count=16k conv=fdatasync
+
+cat /proc/cpuinfo
+
+
+
+----------------
+ поиск  файла
+----------------
+
+find / -name "admin" 
+
+find / -iname 'mc*' -print 2> /dev/null
+
+----------------
+
+
+===================
+
+apache2-utils
+
+
+
+===================
+ 
+ тест  вебсервера
+
+===================
+
+ab -n 10000 -c 20 http://domain.com/
+
+Тест в 500 запросов, с организацией 20 одновременных соединений.
+
+
+
+ab -kc 200 -t 10000 http://host/
+
+
+
+руссификация KDE
+apt-cache search i18n | grep ru
+--------------------
+руссификация  iceweasel
+apt-get install iceweasel-l10n-ru
+--------------------
+информация о процессоре
+
+cat /proc/cpuinfo
