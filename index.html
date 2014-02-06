@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>..:: Debian tips ::..</title>
-
+	<link rel="shortcut icon" href="http://debtips.tk/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -73,7 +73,6 @@ cd ~
 clr
 
 
-
 echo 'net.core.rmem_max=16777216' >> /etc/sysctl.conf
 echo 'net.core.wmem_max=16777216' >> /etc/sysctl.conf
 echo 'net.ipv4.tcp_rmem=4096 87380 16777216' >> /etc/sysctl.conf
@@ -86,7 +85,6 @@ apt-get install -y nano htop iftop mtr-tiny vnstat rcconf
 
 nano /etc/inittab
 
-
 wget --no-check-certificate
 
 ==========================
@@ -95,17 +93,11 @@ wget --no-check-certificate
 
 ==========================
 
-
 apt-get install -y apt-spy
-
 apt-spy -d wheezy -a north-america
-
 apt-spy -d wheezy -a europe
-
 apt-spy -d wheezy -s de
-
 apt-spy -d wheezy -s ua
-
 apt-spy -d wheezy -s ru
 
 
@@ -145,12 +137,7 @@ Pin-Priority: 650
 
    add pubkey
 
-
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com <you key>
-
-
--------------------------------
-
 
 ===============================
 
@@ -160,9 +147,11 @@ apt-key adv --recv-keys --keyserver keyserver.ubuntu.com <you key>
 
 при установке пакетов из тестируемого / нестабильного дистрибутива, просто используйте ключ -t:
 
-
 apt-get -t testing install
 apt-get -t unstable install
+
+Установка пакета из Debian backports с указанием ветки
+apt-get -t lenny-backports install “package”
 
 ==============================
 
@@ -180,7 +169,6 @@ cat /etc/debian_version
 
 lsb_release -a
 
----------------------------------
 ===================================
 
   "заморозка"  обновлений пакета
@@ -190,20 +178,6 @@ lsb_release -a
 echo "mc hold" | dpkg --set-selections
 dpkg --get-selections | grep mc
 
-------------------------------------
-
-
-
-invoke-rc.d arno-iptables-firewall start
-
--------------------------------------
-
-dd of=test bs=64k count=16k conv=fdatasync
-
-cat /proc/cpuinfo
-
-
-
 ----------------
  поиск  файла
 ----------------
@@ -212,40 +186,16 @@ find / -name "admin"
 
 find / -iname 'mc*' -print 2> /dev/null
 
-----------------
-
-
 ===================
-
-apache2-utils
-
-
-
-===================
- 
  тест  вебсервера
-
+  apache2-utils
 ===================
 
 ab -n 10000 -c 20 http://domain.com/
 
 Тест в 500 запросов, с организацией 20 одновременных соединений.
 
-
-
 ab -kc 200 -t 10000 http://host/
-
-
-
-руссификация KDE
-apt-cache search i18n | grep ru
---------------------
-руссификация  iceweasel
-apt-get install iceweasel-l10n-ru
---------------------
-информация о процессоре
-
-cat /proc/cpuinfo
 
 
 ===================
@@ -266,16 +216,16 @@ lsmod
 
 du -sh /
 du -h
--------------------------
 
+=====================
+  генерация  локалей
+=====================
 
 apt-get install -y apt-show-versions libapt-pkg-perl libio-pty-perl libnet-ssleay-perl openssl libauthen-pam-perl file libexpat1 libmagic1 mime-support python python-minimal python2.6 python2.6-minimal
 
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.590_all.deb
 
 dpkg -i webmin_1.590_all.deb
-
-
 
 ========================
  
@@ -285,53 +235,16 @@ dpkg -i webmin_1.590_all.deb
 
 nano /etc/apt/sources.list
 
-
 добавить:
-
 
 deb http://ftp.nl.debian.org/debian/ unstable main contrib non-free
 
 apt-get  update
-
 apt-get install rar unrar
-
-
-----------------------
-
-icq qutim
-wget -O - http://qutim.org/debian/archive.key | sudo apt-key add -
-apt-get install qutim qutim-languages qutim-plugin-plugman qutim-plugin-histman
------------------------
-apt-cache search linux-headers
-apt-cache search linux-image
------------------------
-репозитории
-stable
-------
-deb http://mirror.peer1.net/debian/ stable main #contrib non-free
-deb-src http://mirror.peer1.net/debian/ stable main #contrib non-free
-deb http://security.debian.org/ stable/updates main
-
-backports
--------
-#deb http://mirror.peer1.net/debian/ backports main #contrib non-free
-#deb-src http://mirror.peer1.net/debian/ backports main #contrib non-free
-kde
--------
-deb http://www.debian-multimedia.org/ testing main
------------------------
-Установка пакета из Debian backports с указанием ветки
-apt-get -t lenny-backports install “package”
------------------------
-сетевые интерфейсы
-ifconfig
------------------------
-
 
 rar-архивы
 rar a -m0 -v419430400b <имя архива.rar> <имя файла.расширение>
 -v - размер, -m0 - степень сжатия
-
 -----------------------
 установка десктопа
 
@@ -370,9 +283,6 @@ http://updates.etersoft.ru/pub/Etersoft/RX@Etersoft/unstable/Debian/5.0/
 
 nxsetup --setup-nomachine-key --install
 
-
-
-
 /etc/nxserver/node.conf
 ENABLE_KDE_CUPS="1"
 SSHD_PORT=77
@@ -398,39 +308,12 @@ original nomachine
 repositorium:
 deb http://kanotix.com/files/debian/ unstable main non-free
 
-
 /usr/NX/bin/nxserver --restart
-
 
 nxsetup --install --setup-nomachine-key --clean 
 
-------------------------
 
 Medina You I free (Wolf hard remix)
-------------------------
-настройка  сети Qemu
-
-mkdir /dev/net
-mknod /dev/net/tun c 10 200
-
-#Создаем виртуальную сетевую карту, указываем владельца
-tunctl -t tap0 -u User
-#Поднимаем tap1 с нулевым IP
-ifconfig tap0 0.0.0.0 up
-#Создаем мост br0
-brctl addbr br0
-#Соединяем tap1, eth0 и br0
-brctl addif br0 eth0 tap0
-#Поднимаем мост
-ip link set up dev br0
-#Получаем адрес от DHCP для моста
-dhclient br0
-#Поднимаем мост
-ifconfig br0 up
-#удаляем адрес из eth0
-ifconfig eth0 0.0.0.0 up
-
-gpasswd -a USER uml-net
 -----------------------
         MYSQL
 ----------------------
