@@ -5069,4 +5069,14 @@ https://www.statuscake.com/API/Locations/txt
 
  mz - a fast versatile packet generator
 
----------------------------
+
+===========================
+
+        backups
+        
+===========================
+
+/etc/webmin/mysql/backup.pl --all
+/home/vis/backups/scripts/bckp_create > /dev/null 2>&1
+lftp -f /home/vis/backups/scripts/bckp_transfer > /dev/null 2>&1
+
