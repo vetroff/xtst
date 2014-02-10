@@ -5077,3 +5077,15 @@ https://www.statuscake.com/API/Locations/txt
 /home/vis/backups/scripts/bckp_create > /dev/null 2>&1
 lftp -f /home/vis/backups/scripts/bckp_transfer > /dev/null 2>&1
 
+===========================
+        apache2
+Could not reliably determine
+===========================
+
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+===========================
+        
+        
+===========================
+
