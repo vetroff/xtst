@@ -25,11 +25,11 @@ echo "alias agr='apt-get remove'" >> ~/.bashrc
 echo "alias ac='apt-cache'" >> ~/.bashrc
 echo "alias apt='aptitude'" >> ~/.bashrc
 
-===================================
+======================================
 
        ssh key autorization      
 
-===================================
+======================================
 
 mkdir ~/.ssh
 touch ~/.ssh/authorized_keys
@@ -39,7 +39,13 @@ nano ~/.ssh/authorized_keys
 
 nano /etc/ssh/sshd_config
 
-------------------------------------
+--------------------------------------
+
+Could not load host key: /etc/ssh/ssh_host_ecdsa_key
+
+ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' 
+
+--------------------------------------
 
 
 mkdir /usr/local/custom
