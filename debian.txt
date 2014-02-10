@@ -20,6 +20,7 @@ chattr +i /etc/motd
 
 ------------------------------------
 
+echo "alias ag='apt-get'" >> ~/.bashrc
 echo "alias agi='apt-get install'" >> ~/.bashrc
 echo "alias agr='apt-get remove'" >> ~/.bashrc
 echo "alias ac='apt-cache'" >> ~/.bashrc
