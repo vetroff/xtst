@@ -1195,7 +1195,6 @@ apt-get -t lenny-backports install "package"
 
 ==============================
 
-
 apt-get install -y libglib2.0-0
 
 -------
@@ -1225,16 +1224,6 @@ echo 'export TERM=xterm-256color' >> ~/.bash_profile
 
 -------
 
-для  поддержки цветовых схем :
-
-
-echo 'export TERM=xterm-256color' >> ~/.bashrc
-echo 'export EDITOR=nano' >> ~/.bashrc
-
-
--------
-
-
 cd /usr/local/mc/share/mc/skins
 rm gotar.ini
 wget http://nl.xsrv.tk/files/cnf/mc/gotar.ini
@@ -1243,11 +1232,12 @@ rm ini
 wget http://nl.xsrv.tk/files/cnf/mc/ini
 cd ~
 
-
 -------
+
 редактировать скин
 
 nano /usr/local/mc/share/mc/skins/gotar.ini
+
 -------
 
 конф. файл mc
@@ -1262,10 +1252,8 @@ nano ~/.mc/ini
 
 заморозим  обновление  mc
 
-
 echo "mc hold" | dpkg --set-selections
 dpkg --get-selections | grep mc
-
 
 --------------------------------
 
@@ -1274,6 +1262,8 @@ dpkg --get-selections | grep mc
 http://plug-and-pray.blogspot.com/2009/09/editing-midnight-commanders-color.html
 
 --------------------------------
+
+Установка Midnight Commander из  git-репозитория
 
 apt-get install git git-core
 
