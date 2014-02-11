@@ -1,0 +1,839 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--BEGIN html-->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+
+<!--BEGIN head-->
+<head profile="http://purl.org/uF/hAtom/0.1/ http://purl.org/uF/2008/03/">
+
+	<title>sysadmin and DBA tips &#8211; MEGATOOLS &#8211; Synchronizing your backups to MEGA</title>
+
+	<!-- Meta Tags -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="generator" content="WordPress" />
+
+	<link rel="alternate" type="application/rss+xml" title="sysadmin and DBA tips &raquo; Feed" href="http://albertolarripa.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="sysadmin and DBA tips &raquo; Comments Feed" href="http://albertolarripa.com/comments/feed/" />
+
+			<link rel="alternate" type="application/rss+xml" title="sysadmin and DBA tips &raquo; MEGATOOLS &#8211; Synchronizing your backups to MEGA Comments Feed" href="http://albertolarripa.com/2013/07/10/megatools-synchronizing-your-backups-to-mega/feed/" />
+<link rel='stylesheet' id='googlefont-css'  href='http://fonts.googleapis.com/css?family=Oswald%3Ar%2Cb%7CGoudy+Bookletter+1911&#038;ver=3.7.1' type='text/css' media='all' />
+<link rel='stylesheet' id='maincss-css'  href='http://albertolarripa.com/wordpress/wp-content/themes/evolve/style.css?ver=3.7.1' type='text/css' media='all' />
+<style type='text/css'>
+ul.slides li.slide {display:block !important; }/**
+ * Light grey + blue
+ * 
+ */
+ 
+
+.header {background:#dedede url(http://albertolarripa.com/wordpress/wp-content/themes/evolve/library/media/images/light-grey-blue/header-footer.jpg) repeat;border-bottom: 1px solid #ccc;}
+
+#tagline { color: #999;text-shadow:0px 1px 0px rgba(255,255,255,.8); }
+
+#logo a, .footer a, .widgets-back .widgets-holder a, .widgets-holder a { color:#555; text-shadow:1px 1px 0px rgba(255,255,255,.7);}
+#logo a:hover , .footer a:hover {color: #222; }
+.widgets-back .widgets-holder a, .widgets-holder a {text-shadow:none;}
+
+
+.footer {background:#dedede url(http://albertolarripa.com/wordpress/wp-content/themes/evolve/library/media/images/light-grey-blue/footer-light.jpg) repeat;color:#333;border-top: 1px solid #ccc;}
+
+p#copyright {text-shadow:0 1px 0px #fff;}/**
+ * Posts Layout
+ * 
+ */
+ 
+ 
+.home .hentry, .archive .hentry, .search .hentry {width:48%;float:left;margin-right:19px;padding-bottom:12px;}
+.home .hentry .entry-content, .archive .hentry .entry-content, .search .hentry .entry-content {font-size:13px;}
+.entry-content {margin-top:25px;}
+.home .odd0, .archive .odd0, .search .odd0{clear:both;}
+.home .odd1, .archive .odd1, .search .odd1{margin-right:0px;}
+.home .entry-title, .entry-title a, .archive .entry-title, .search .entry-title {font-size:24px;letter-spacing:-1px;line-height:23px;}
+.home .hentry img, .archive .hentry img, .search .hentry img{float:left;margin-right:10px;max-width:100px;max-height:150px;padding:3px;width:expression(document.body.clientWidth < 742? '100px' : document.body.clientWidth > 1000? '100px' : 'auto');}
+.home .entry-header, .archive .entry-header, .search .entry-header{font-size:12px;}
+.home .published strong, .archive .published strong,  .search .published strong{font-size:15px;line-height:15px;}
+.home .hentry .comment-count a, .archive .hentry .comment-count a, .search .hentry .comment-count a  {background:url(http://albertolarripa.com/wordpress/wp-content/themes/evolve/library/media/images/comment.png) 0 9px no-repeat;text-decoration:none;position:relative;bottom:-9px;border:none;padding:8px 10px 8px 22px;}
+.home .hfeed, .archive .hfeed, .single .hfeed, .page .hfeed {margin-right:0px;}
+.home .hentry .entry-footer, .archive .hentry .entry-footer, .search .hentry .entry-footer {float:left;width:100%}
+.home .hentry .comment-count, .archive .hentry .comment-count, .search .hentry .comment-count {background:none!important;padding-right:0;}#logo, #logo a {font:bold 55px goudy bookletter 1911; color:;letter-spacing:-.01em;}#tagline {font:bold italic 14px georgia; color:;}body, input, textarea, .entry-content {font:normal 16px arial; color:;line-height:1.5em;}
+</style>
+<link rel='stylesheet' id='toc-screen-css'  href='http://albertolarripa.com/wordpress/wp-content/plugins/table-of-contents-plus/screen.css?ver=1308' type='text/css' media='all' />
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: "es"}</script><script type='text/javascript' src='http://albertolarripa.com/wordpress/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://albertolarripa.com/wordpress/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://albertolarripa.com/wordpress/wp-content/themes/evolve/library/media/js/tipsy.js?ver=3.7.1'></script>
+<script type='text/javascript' src='http://albertolarripa.com/wordpress/wp-content/themes/evolve/library/media/js/fields.js?ver=3.7.1'></script>
+<script type='text/javascript' src='http://albertolarripa.com/wordpress/wp-content/themes/evolve/library/media/js/supersubs.js?ver=3.7.1'></script>
+<script type='text/javascript' src='http://albertolarripa.com/wordpress/wp-content/themes/evolve/library/media/js/superfish.js?ver=3.7.1'></script>
+<script type='text/javascript' src='http://albertolarripa.com/wordpress/wp-content/themes/evolve/library/media/js/buttons.js?ver=3.7.1'></script>
+<script type='text/javascript' src='http://albertolarripa.com/wordpress/wp-includes/js/comment-reply.min.js?ver=3.7.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://albertolarripa.com/wordpress/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://albertolarripa.com/wordpress/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='VPS Database Replication &#8211; Protect your Mysql &amp; MongoDB replication' href='http://albertolarripa.com/2013/07/04/vps-database-replication-protect-your-mysql-mongodb-replication/' />
+<link rel='next' title='Control your Server with GTALK/jabber' href='http://albertolarripa.com/2013/08/05/control-your-server-with-gtalkjabber/' />
+
+<link rel='canonical' href='http://albertolarripa.com/2013/07/10/megatools-synchronizing-your-backups-to-mega/' />
+<link rel='shortlink' href='http://albertolarripa.com/?p=1895' />
+
+<link rel="stylesheet" href="http://albertolarripa.com/wordpress/wp-content/plugins/count-per-day/counter.css" type="text/css" />
+<meta property="og:image" content="http://i.ytimg.com/vi/LWfFMysaspQ/default.jpg" /><style type="text/css">div#toc_container {background: #ffffff;border: 1px solid #aaaaaa;width: 350px;}div#toc_container p.toc_title {color: #f53024;}div#toc_container p.toc_title a,div#toc_container ul.toc_list a {color: #864bf1;}</style> 
+<!--END head-->  
+</head>
+
+
+
+<!--BEGIN body-->
+<body class="single single-post postid-1895 single-format-standard">
+
+
+<div id="top"></div>
+
+
+
+
+
+	<!--BEGIN .header-->
+		<div class="header" style="margin: 0 auto;">
+    
+	<!--BEGIN .container-->
+	<div class="container" style="margin-bottom:0px;">
+  
+  
+  <div class="radial-effect"></div>
+  
+  
+  
+  <!-- AD Space 1 -->
+  
+  
+  
+                            
+  
+  
+  
+    
+      
+     
+      
+     
+     
+           
+     
+      
+     
+     
+       
+			<div id="logo"><span></span><a href="http://albertolarripa.com">sysadmin and DBA tips</a></div>
+      
+      <div id="tagline">by Alberto Larripa</div>
+	<!--END .container-->
+		</div>
+    
+    		<!--END .header-->
+		</div>
+    
+  
+  <div class="menu-container">
+          	
+	<div class="menu-back">
+  
+  
+
+  
+  <!--BEGIN .container-menu-->
+  <div class="container nacked-menu" style="margin:0 auto;padding-bottom:10px;position:relative;z-index:99;">
+
+        
+   <div class="menu-header">
+
+          
+      
+	        <div class="menu"><ul class="nav"><li ><a href="http://albertolarripa.com/">Home</a></li><li class="page_item page-item-1137"><a href="http://albertolarripa.com/about-me/">About Me</a></li><li class="page_item page-item-2"><a href="http://albertolarripa.com/sample-page/">Sobre mi</a></li></ul></div>
+          
+           
+          
+          </div> 
+       
+              
+       
+       
+       
+       </div>
+
+
+        <!--BEGIN header-content.php -->
+        
+           
+  
+  	  
+  
+  <div class="container" style="margin:0 auto;">   
+
+
+
+   
+  
+ 
+          
+  <div style="float:left;width:620px;height:30px;margin-top:0px;">
+  
+  <!--BEGIN #subscribe-follow-->
+ 
+<span class="social-title">Follow</span>
+
+<div style="position:relative;float:left;z-index:0;"><div class="social-trans-left"></div><div class="social-trans-right"></div>
+<div class="sc_menu">
+
+
+
+
+<ul class="sc_menu">
+
+<li><a target="_blank" href="http://albertolarripa.com/feed/rss/" class="tipsytext" id="rss" original-title="RSS Feed"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</div>
+
+</div>
+
+<!--END #subscribe-follow-->
+  
+  
+</div>  
+  
+   <!--BEGIN #righttopcolumn-->  
+  <!--<div "righttopcolumn"> -->
+  <div style="float:right;width:270px;height:0px;margin-top:0px;"> 
+       
+<!--BEGIN #searchform-->
+       <form action="http://albertolarripa.com" method="get" class="searchform">
+       
+         <div id="search-text-box">
+  
+  <label class="searchfield" id="search_label" for="search-text"><input id="search-text" type="text" tabindex="1" name="s" class="search" onfocus="if (this.value == 'Type your search') {this.value=''}" onblur="if(this.value == '') { this.value='Type your search'}" value="Type your search" /></label> 
+  
+  </div>
+  
+           <div id="search-button-box">
+      
+	<button id="search-button" tabindex="2" type="submit" class="search-btn"></button>
+  
+  </div>
+  
+  
+
+  
+  
+    
+</form>
+
+<div style="clear:both;"></div>
+
+<!--END #searchform--> 
+
+</div> 
+  <!--END #righttopcolumn-->
+
+
+  
+         
+    
+       
+       
+       </div>
+       
+              
+        <!--END header-content.php -->
+        
+        
+             
+     <!-- AD Space 2 -->
+  
+  
+     
+      
+      
+      </div> 
+       
+             	<!--BEGIN .content-->
+	<div class="content snaidersingular single s-category-linux s-category-vps s-tag-backups s-tag-cloud s-tag-mega s-tag-megatools s-tag-synchronizing-backups s-author-none windows chrome ch">  
+  
+ 
+
+
+       	<!--BEGIN .container-->
+	<div class="container" style="margin:0px auto;">
+  
+   
+
+
+		<!--BEGIN #content-->
+		<div id="content">
+    
+    
+    
+
+
+	
+
+
+    
+    
+      
+
+
+
+			<!--BEGIN #primary .hfeed-->
+			<div id="primary" class="hfeed">
+      
+
+     
+ 
+ <!---------------------- 
+ ---- attachment begin
+ ----------------------->  
+
+
+  
+ 
+                                 
+                  
+
+				<!--BEGIN .hentry-->
+				<div id="post-1895" class="post-1895 post type-post status-publish format-standard hentry category-linux category-vps tag-backups tag-cloud tag-mega tag-megatools tag-synchronizing-backups p publish first-post cat tag">
+					
+
+
+
+                              
+                    <h1 class="entry-title" style="float:left;">MEGATOOLS &#8211; Synchronizing your backups to MEGA</h1>
+                    
+                     
+                    <br /><br />                    
+                    
+         <!-- AD Space 7 -->
+  
+  
+                         
+      
+			<!--BEGIN .entry-content .article-->
+					<div class="entry-content article">
+						<div class='wdgpo wdgpo_medium_count'><g:plusone size='medium' count='true' href='http://albertolarripa.com/2013/07/10/megatools-synchronizing-your-backups-to-mega/' ></g:plusone></div> <p>Hi and wellcome to another Sysadmin &amp; DBA tips, in this post We&#8217;ll use the MEGATOOL utility to synchronize your server backups to the mega cloud!!<span id="more-1895"></span></p>
+<div id="toc_container" class="no_bullets"><ul class="toc_list"><li><a href="#Megatools"><span class="toc_number toc_depth_1">1</span> Megatools</a><ul><li><a href="#Installation"><span class="toc_number toc_depth_2">1.1</span>  Installation:</a><ul><li><a href="#PPA_installation"><span class="toc_number toc_depth_3">1.1.1</span> PPA installation</a></li></ul></li><li><a href="#Configuration"><span class="toc_number toc_depth_2">1.2</span> Configuration</a></li><li><a href="#Using_the_tools"><span class="toc_number toc_depth_2">1.3</span> Using the tools</a></li><li><a href="#MegaSync_script"><span class="toc_number toc_depth_2">1.4</span> MegaSync script</a></li></ul></li></ul></div>
+<h1><span id="Megatools">Megatools</span></h1>
+<p>Like the <a href="http://megatools.megous.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);" target="_blank">official</a> webpage says:</p>
+<address>Megatools is a collection of programs for accessing Mega service from a command line of your desktop or server.</address>
+<address>Megatools allow you to copy individual files as well as entire directory trees to and from the cloud. You can also perform streaming downloads for example to preview videos and audio files, without needing to download the entire file.</address>
+<address>You can register account using a &#8216;megareg&#8217; tool, with the benefit of having true control of your encryption keys.</address>
+<address>Megatools are robust and optimized for fast operation &#8211; as fast as Mega servers allow. Memory requirements and CPU utilization are kept at minimum.</address>
+<p><span class="youtube"><iframe title="YouTube video player" class="youtube-player" type="text/html" width="480" height="295" src="http://www.youtube.com/embed/LWfFMysaspQ?wmode=transparent&amp;fs=1&amp;hl=en&amp;modestbranding=1&amp;iv_load_policy=3&amp;showsearch=0&amp;rel=1&amp;theme=dark&amp;hd=1&#038;feature=player_embedded#!" frameborder="0" allowfullscreen></iframe></span></p>
+<p>The options that this tool offer:</p>
+<pre>Tools
+=====
+
+  megareg      Register and verify a new mega account
+  megadf       Show your cloud storage space usage/quota
+  megals       List all remote files
+  megamkdir    Create remote directory
+  megarm       Remove remote file or directory
+  megamv       Move and rename remote files
+  megaput      Upload individual files
+  megaget      Download individual files
+  megadl       Download file from a "public" Mega link
+               (doesn't require login)
+  megastream   Streaming download of a file
+               (can be used to preview videos or music)
+  megasync     Upload or download a directory tree
+  megafs       Mount remote filesystem locally.</pre>
+<h2><span id="Installation"> Installation:</span></h2>
+<p style="text-align: justify;">Differents installations are possible, in my case I&#8217;ll explain how realize a installation in a Ubuntu Server. But if you prefer, you can install from <a href="http://megatools.megous.com/builds/megatools-1.9.91.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">sources</a>, obtain the latest source code from <a href="https://github.com/megous/megatools" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);" target="_blank">git</a>, or extrac directly the binary files from:</p>
+<ul>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-ubuntu-i386.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-ubuntu-i386.tar.gz</a> (663 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-fedora-i386.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-fedora-i386.tar.gz</a> (667 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-ubuntu-amd64.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-ubuntu-amd64.tar.gz</a> (663 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-suse-i586.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-suse-i586.tar.gz</a> (677 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-debian-wheezy-i386.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-debian-wheezy-i386.tar.gz</a> (675 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-fedora-x86_64.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-fedora-x86_64.tar.gz</a> (662 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-arch-i686.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-arch-i686.tar.gz</a> (675 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-debian-wheezy-amd64.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-debian-wheezy-amd64.tar.gz</a> (669 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91.tar.gz</a> (440 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-suse-x86_64.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-suse-x86_64.tar.gz</a> (674 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-arch-x86_64.tar.gz" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">megatools-1.9.91-arch-x86_64.tar.gz</a> (675 kB)</li>
+<li><a href="http://megatools.megous.com/builds/megatools-1.9.91-win32.zip" onclick="javascript:_gaq.push(['_trackEvent','download','http://megatools.megous.com/builds/megatools-1.9.91-win32.zip']);">megatools-1.9.91-win32.zip</a> (4221 kB)</li>
+<li>For older versions see <a href="http://megatools.megous.com/builds" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://megatools.megous.com']);">Archive</a></li>
+</ul>
+<h3><span id="PPA_installation">PPA installation</span></h3>
+<ul>
+<li>Add Megattols PPA repositories to your /etc/apt/sources.list</li>
+</ul>
+<pre>deb http://ppa.launchpad.net/megous/ppa/ubuntu quantal main
+deb-src http://ppa.launchpad.net/megous/ppa/ubuntu quantal main</pre>
+<ul>
+<li>Import Megatols PPA public Key</li>
+</ul>
+<pre>add-apt-repository ppa:megous/ppa</pre>
+<ul>
+<li>Update</li>
+</ul>
+<pre>aptitude update</pre>
+<ul>
+<li>Install megatools</li>
+</ul>
+<pre>aptitude install megatools</pre>
+<h2><span id="Configuration">Configuration</span></h2>
+<p>The next step, if you don&#8217;t have an account yet, is create one following this steps:</p>
+<pre># megareg -n  -e  -p  --agree 
+Registration email was sent to 'email@albertolarripa.com'.
+To complete registration, enter signup link bellow.
+
+Enter signup link for email@albertolarripa.com, or press CTRL+C: https://mega.co.nz/#confirmLXHgeukasda82o4-mqz4mnALNKSdjlasjd klasjlaNhegxSvGAJKLSDNASJKasdnjkaYUBhbGJlcnRvASdlnjkaiops2b20JdHdlZASLKASOPdas54
+
+The account was registered successfully!</pre>
+<p style="text-align: justify;">Now to simplificate the use of the tool, create a new file in the user account that will be used for megatools utility, or a new global configuration file in <strong>/etc</strong> that will use with <strong>&#8211;config=PATH</strong> option.</p>
+<pre># cat /root/.megarc 
+[Login]
+Username = email@albertolarripa.com
+Password = yourpassword
+</pre>
+<p>Finally install this packages:</p>
+<pre>aptitude install glib-networking gobject-introspection curl libcurl4-gnutls-dev</pre>
+<p>Now, check if your mega account is accesible from your server using the tool <strong>megals</strong>:</p>
+<pre># megals
+/Contacts
+/Inbox
+/Root
+/Trash</pre>
+<h2><span id="Using_the_tools">Using the tools</span></h2>
+<p>Is the moment for see what offer the megatools utility</p>
+<ul>
+<li>megadf: Show total available, used, or free space in the cloud</li>
+</ul>
+<pre># megadf --mb
+Total: 51200
+Used: 6339
+Free: 44860</pre>
+<ul>
+<li>megadl: download exported files and directories from Mega.co.nz</li>
+</ul>
+<p>Download exported file:</p>
+<pre>$ megadl 'https://mega.co.nz/#!7YVWhCzZ!bauBlAkKKvv8hIm-8-qFmGOYS289ToQWN7rGFPzXB_w'</pre>
+<p>Download exported folder:</p>
+<pre>$ megadl 'https://mega.co.nz/#F!HIlFDajT!HLiVvQQkSe1d0ogxZuaOJg'</pre>
+<ul>
+<li>megadf: Mount remote filesystem locally via FUSE</li>
+</ul>
+<pre>$ mkdir -p mount
+$ megafs mount
+$ ls mount
+Contacts Inbox Root Trash</pre>
+<ul>
+<li>megamkdir:  Create remote folder under your Mega.co.nz account</li>
+</ul>
+<p>Create new folder:</p>
+<pre>$ megamkdir /Root/MyNewFolder
+$ megals /Root
+/Root
+/Root/MyNewFolder</pre>
+<p>Add new contact to your contacts list:</p>
+<pre>$ megamkdir /Contacts/some@email.com</pre>
+<ul>
+<li>megamv: move or rename files or folders on your Mega.co.nz account</li>
+</ul>
+<p>Rename a file:</p>
+<pre>$ megals /Root
+/Root
+/Root/README.TXT
+$ megamv /Root/README.TXT /Root/README
+$ megals /Root
+/Root
+/Root/README</pre>
+<p>Move file to a another folder:</p>
+<pre>$ megals -R /Root
+/Root
+/Root/README
+/Root/MyFolder
+$ megamv /Root/README /Root/MyFolder
+$ megals -R /Root
+/Root
+/Root/MyFolder/README</pre>
+<ul>
+<li>megaput: upload files to your Mega.co.nz account</li>
+</ul>
+<p>Upload file to the /Root:</p>
+<pre>$ megaput README
+$ megals /Root
+/Root
+/Root/README</pre>
+<p>Upload file, while naming it differently:</p>
+<pre>$ megaput --path /Root/README.TXT README
+$ megals /Root
+/Root
+/Root/README.TXT</pre>
+<ul>
+<li>megasync: Upload/download entire directories to/from your Mega.co.nz account</li>
+</ul>
+<p>Upload directory.</p>
+<pre>$ megasync --local MyBackups --remote /Root/Backups</pre>
+<p>Download directory.</p>
+<pre>$ megasync --local MyBackups --remote /Root/Backups --download</pre>
+<h2><span id="MegaSync_script">MegaSync script</span></h2>
+<p style="text-align: justify;">Mega don&#8217;t offer posibility to maintain a real-sync , for example, If I remove a file in my server and launch the <strong>megasync</strong> utility, MEGA not removed the file on the cloud, having a dirty cloud. To resolve it, I created a personal script that I share with you.</p>
+<pre>#!/bin/sh
+
+MEGASYNC='/usr/local/bin/megasync'
+MEGARM='/usr/local/bin/megarm'
+LOCALDIR="/usr/local/data/backups"
+REMOTEDIR="/Root/albertolarripa/backups"
+SEDLOCALDIR="\/usr\/local\/data\/backups"
+SEDREMOTEDIR="\/Root\/albertolarripa\/backups"
+BACKUP_TIME=`date +%c`
+LOG="/usr/local/data/backups/mega.log"
+hostname=`hostname`
+
+#Obtain the files that not exists in the local server
+
+DELETE=`$MEGASYNC --dryrun --reload --download --local $LOCALDIR --remote $REMOTEDIR | sed 's/F '$SEDLOCALDIR'/'$SEDREMOTEDIR'/g'`
+
+# And remove it
+
+for i in $DELETE; do
+        $MEGARM $i
+done
+
+# Run the synchronization to Mega
+
+SYNC=`$MEGASYNC --no-progress --local $LOCALDIR --remote $REMOTEDIR`
+
+echo "[$BACKUP_TIME][$(hostname)] synchronization to mega done!!" &gt; $LOG
+echo "Files removed $DELETE" &gt;&gt; $LOG
+echo "Files synchronized" &gt;&gt; $LOG</pre>
+            					<!--END .entry-content .article-->
+					
+          <div style="clear:both;"></div>
+          </div>
+          
+          
+          
+         <!-- AD Space 8 -->
+  
+                 
+
+						<!--BEGIN .entry-meta .entry-footer-->
+                    <div class="entry-meta entry-footer">
+                    	                    	<span class="entry-categories"><strong>Posted in</strong> <a href="http://albertolarripa.com/category/linux/" title="View all posts in linux" rel="category tag">linux</a>, <a href="http://albertolarripa.com/category/linux/vps/" title="View all posts in VPS" rel="category tag">VPS</a></span>
+                      <span class="meta-sep">-</span>						                                                <span class="entry-tags"><strong>Tagged</strong> <a href="http://albertolarripa.com/tag/backups/" rel="tag">backups</a>, <a href="http://albertolarripa.com/tag/cloud/" rel="tag">cloud</a>, <a href="http://albertolarripa.com/tag/mega/" rel="tag">mega</a>, <a href="http://albertolarripa.com/tag/megatools/" rel="tag">megatools</a>, <a href="http://albertolarripa.com/tag/synchronizing-backups/" rel="tag">Synchronizing backups</a></span>
+                        					<!--END .entry-meta .entry-footer-->
+                    </div>
+                    
+                    
+                                   
+				</div>
+        
+
+        
+        
+        
+        
+                       
+				<!--BEGIN .navigation-links-->
+<div class="navigation-links single-page-navigation" style="clear:both;">
+	<div class="nav-previous"><a href="http://albertolarripa.com/2013/07/04/vps-database-replication-protect-your-mysql-mongodb-replication/" rel="prev">&larr; VPS Database Replication &#8211; Protect your Mysql &#038; MongoDB replication</a></div>
+	<div class="nav-next"><a href="http://albertolarripa.com/2013/08/05/control-your-server-with-gtalkjabber/" rel="next">Control your Server with GTALK/jabber &rarr;</a></div>
+<!--END .navigation-links-->
+</div>
+<div style="clear:both;"></div>
+
+        
+           
+
+				
+<div id="comments">   
+<!--BEGIN #comments-->
+
+    
+	<span class="comments-title-back"><h3 class="comment-title"><span class="comment-title-meta">1 Comment</span></h3>    <span class="comment-feed-link"><a title="Follow replies" class="tipsytext follow-replies" href="http://albertolarripa.com/2013/07/10/megatools-synchronizing-your-backups-to-mega/feed/"></a></span></span> 
+    <!--BEGIN .comment-list-->
+    <ol class="comment-list">
+		    
+    <!--BEING .comment-->
+	<li class="comment first-comment reader reader-vukor microid-mailto+http:sha1:f83c7927dc8a19936fcd2a4c8ebb997a1cd893b4" id="comment-1544">
+    	<!--BEGIN .comment-author-->
+<div class="comment-author vcard">
+<img class="avatar gravatar gravatar-60" alt="vukor's Gravatar" src="http://0.gravatar.com/avatar/cf6021e2a0ca99c33c1a0dde87aca936?s=60&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D60&amp;r=G" width="60" height="60" /> <cite class="commenter fn n"><a href="http://bugreev.ru" onclick="javascript:_gaq.push(['_trackEvent','outbound-commentauthor','http://bugreev.ru']);"  rel='external nofollow' class='url'>vukor</a></cite>
+<!--END .comment-author-->
+</div>
+<!--BEGIN .comment-meta-->
+<div class="comment-meta">
+<span class="comment-date">September 27, 2013</span>
+ at <span class="comment-date">10:43 am</span>
+ | <span class="comment-permalink"><a rel="bookmark" title="Permalink to this comment" href="http://albertolarripa.com/2013/07/10/megatools-synchronizing-your-backups-to-mega/#comment-1544">Permalink</a></span>
+ 
+<!--END .comment-meta-->
+</div>
+
+<!--BEGIN .comment-content-->
+<div class="comment-content">
+<p>Hello,<br />
+Thank you for this tool. It succesfully works on my ubuntu box, but it is not working it in my freebsd box (FreeBSD 8.3-RELEASE-p7 i386). I builded it from source megatools-1.9.91.tar.gz and when i run command, for example:<br />
+# megadf<br />
+I got error message:<br />
+GLib-GIO-Message: Using the &#8216;memory&#8217; GSettings backend.  Your settings will not be saved or shared with other applications.<br />
+ERROR: Can&#8217;t login to mega.co.nz: API &#8216;us&#8217; failed: HTTP POST failed: Connection failed: Unacceptable TLS certificate</p>
+<p>Can you help to resolve this issue ?</p>
+
+<!--END .comment-content-->
+</div>
+<div class="comment-reply"><a class='comment-reply-link' href='/2013/07/10/megatools-synchronizing-your-backups-to-mega/?replytocom=1544#respond' onclick='return addComment.moveForm("comment-1544", "1544", "respond", "1895")'>Reply</a></div>	<!--END .comment-->
+</li>
+    <!--END .comment-list-->
+    </ol>
+
+
+<!--END #comments-->   
+
+</div>
+
+<!--BEGIN #respond-->
+
+
+    
+    
+  
+    <!--BEGIN #comment-form-->
+
+<div style="clear:both;"></div>        
+
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2013/07/10/megatools-synchronizing-your-backups-to-mega/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://albertolarripa.com/wordpress/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required='true' /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-required='true' /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" /></p>
+
+<div class="captchaSizeDivLarge"><img id="si_image_com" class="si-captcha" src="http://albertolarripa.com/wordpress/wp-content/plugins/si-captcha-for-wordpress/captcha/securimage_show.php?si_form_id=com&amp;prefix=0ciSrAcxAxcp0wyr" width="175" height="60" alt="CAPTCHA Image" title="CAPTCHA Image" />
+    <input id="si_code_com" name="si_code_com" type="hidden"  value="0ciSrAcxAxcp0wyr" />
+    <div id="si_refresh_com">
+<a href="#" rel="nofollow" title="Refresh Image" onclick="si_captcha_refresh('si_image_com','com','/wordpress/wp-content/plugins/si-captcha-for-wordpress/captcha','http://albertolarripa.com/wordpress/wp-content/plugins/si-captcha-for-wordpress/captcha/securimage_show.php?si_form_id=com&amp;prefix='); return false;">
+      <img class="captchaImgRefresh" src="http://albertolarripa.com/wordpress/wp-content/plugins/si-captcha-for-wordpress/captcha/images/refresh.png" width="22" height="20" alt="Refresh Image" onclick="this.blur();" /></a>
+  </div>
+  </div>
+<br />
+<p><input id="captcha_code" name="captcha_code" type="text" size="6"  />
+<label id="captcha_code_label" for="captcha_code" >CAPTCHA Code</label><span class="required">*</span>
+</p>												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='1895' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7266cfa5ca" /></p>					</form>
+							</div><!-- #respond -->
+
+		    <!--END #comment-form-->
+   
+    
+
+<!--END #respond-->
+
+
+
+                
+				
+ <!---------------------- 
+ ---- single post end
+ -----------------------> 
+
+
+ <!---------------------- 
+ ---- home/date/category/tag/search/author begin
+ ----------------------->         
+      
+      
+
+			<!--END #primary .hfeed-->
+			</div>
+      
+      
+
+        <!--BEGIN #secondary .aside-->
+        <div id="secondary" class="aside">
+        
+      
+      
+  <!-- AD Space 3 -->
+  
+  
+     
+        
+        
+        
+			<div id="text-3" class="widget widget_text"><div class="widget-content"><div style="position:relative;top:-10px;"><div class="widget-title-background"></div><h3 class="widget-title">Need Support</h3></div>			<div class="textwidget"><p style="text-align: center;"><a href="http://albertolarripa.com/wordpress/wp-content/uploads/2012/07/mail.png" ><img class="size-full wp-image-1509" title="mail" src="http://albertolarripa.com/wordpress/wp-content/uploads/2012/07/mail.png" alt="" width="166" height="14" /></a></p>
+<div style="text-align: center;"><a href="http://www.linkedin.com/in/alarripa/"><img src="http://www.linkedin.com/img/webpromo/btn_viewmy_160x25.gif" border="0" alt="Alberto Larripa" /><br />
+</a></div>
+</div>
+		</div></div><div id="countperday_widget-4" class="widget widget_countperday_widget"><div class="widget-content"><div style="position:relative;top:-10px;"><div class="widget-title-background"></div><h3 class="widget-title">Count per Day</h3></div><ul class="cpd"><li class="cpd-l"><span id="cpd_number_getuserall" class="cpd-r">84992</span>Total visitors:</li></ul></div></div><div id="categories-3" class="widget widget_categories"><div class="widget-content"><div style="position:relative;top:-10px;"><div class="widget-title-background"></div><h3 class="widget-title">Categories</h3></div>		<ul>
+	<li class="cat-item cat-item-214"><a href="http://albertolarripa.com/category/altiris/" title="View all posts filed under Altiris">Altiris</a>
+</li>
+	<li class="cat-item cat-item-248"><a href="http://albertolarripa.com/category/cfengine/" title="View all posts filed under CFEngine">CFEngine</a>
+</li>
+	<li class="cat-item cat-item-36"><a href="http://albertolarripa.com/category/herramientas-auditoria/" title="View all posts filed under Herramientas auditoria">Herramientas auditoria</a>
+</li>
+	<li class="cat-item cat-item-252"><a href="http://albertolarripa.com/category/jobscheduler/" title="View all posts filed under JobScheduler">JobScheduler</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://albertolarripa.com/category/linux/" title="View all posts filed under linux">linux</a>
+</li>
+	<li class="cat-item cat-item-269"><a href="http://albertolarripa.com/category/mongodb/" title="View all posts filed under MongoDB">MongoDB</a>
+</li>
+	<li class="cat-item cat-item-225"><a href="http://albertolarripa.com/category/monitoring/" title="View all posts filed under monitoring">monitoring</a>
+</li>
+	<li class="cat-item cat-item-56"><a href="http://albertolarripa.com/category/oracle/mysql-2/" title="View all posts filed under Mysql">Mysql</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://albertolarripa.com/category/monitoring/nagios/" title="View all posts filed under Nagios">Nagios</a>
+</li>
+	<li class="cat-item cat-item-287"><a href="http://albertolarripa.com/category/node/" title="View all posts filed under node">node</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://albertolarripa.com/category/oracle/" title="View all posts filed under Oracle">Oracle</a>
+</li>
+	<li class="cat-item cat-item-228"><a href="http://albertolarripa.com/category/oracle/oracle-db/" title="View all posts filed under Oracle DB">Oracle DB</a>
+</li>
+	<li class="cat-item cat-item-229"><a href="http://albertolarripa.com/category/puppet/" title="View all posts filed under Puppet">Puppet</a>
+</li>
+	<li class="cat-item cat-item-219"><a href="http://albertolarripa.com/category/samba/" title="View all posts filed under samba">samba</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://albertolarripa.com/category/seguridad/" title="View all posts filed under seguridad">seguridad</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://albertolarripa.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-61"><a href="http://albertolarripa.com/category/video/" title="View all posts filed under Video">Video</a>
+</li>
+	<li class="cat-item cat-item-40"><a href="http://albertolarripa.com/category/virtualizacion/" title="View all posts filed under virtualizacion">virtualizacion</a>
+</li>
+	<li class="cat-item cat-item-275"><a href="http://albertolarripa.com/category/linux/vps/" title="View all posts filed under VPS">VPS</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://albertolarripa.com/category/web/" title="View all posts filed under web">web</a>
+</li>
+	<li class="cat-item cat-item-173"><a href="http://albertolarripa.com/category/oracle/weblogic/" title="View all posts filed under weblogic">weblogic</a>
+</li>
+	<li class="cat-item cat-item-35"><a href="http://albertolarripa.com/category/windows/" title="View all posts filed under windows">windows</a>
+</li>
+		</ul>
+</div></div>
+		<!--END #secondary .aside-->
+    
+    
+      <!-- AD Space 4 -->
+  
+  
+     
+    
+    
+		</div>  
+    
+		<!--END #content-->
+		</div>
+    
+    	<!--END .container-->
+	</div> 
+  
+  
+
+      	<!--END .content-->
+	</div> 
+  
+     <!--BEGIN .content-bottom--> 
+  <div class="content-bottom">
+  
+       	<!--END .content-bottom-->
+  </div>
+			
+		<!--BEGIN .footer-->
+		<div class="footer">
+
+   	<!--BEGIN .container-->
+	<div class="container" style="margin-bottom:0;position:relative;">    
+  
+  
+           <!-- AD Space 9 -->
+  
+  
+     
+
+
+  
+
+<div style="clear:both;"></div> 
+  
+     
+
+
+ 
+
+  
+  
+
+			<!-- Theme Hook -->
+      
+      
+
+<script type="text/javascript" charset="utf-8">
+var $jx = jQuery.noConflict();
+  $jx("div.post").mouseover(function() {
+    $jx(this).find("span.edit-post").css('visibility', 'visible');
+  }).mouseout(function(){
+    $jx(this).find("span.edit-post").css('visibility', 'hidden');
+  });
+  
+    $jx("div.type-page").mouseover(function() {
+    $jx(this).find("span.edit-page").css('visibility', 'visible');
+  }).mouseout(function(){
+    $jx(this).find("span.edit-page").css('visibility', 'hidden');
+  });
+  
+      $jx("div.type-attachment").mouseover(function() {
+    $jx(this).find("span.edit-post").css('visibility', 'visible');
+  }).mouseout(function(){
+    $jx(this).find("span.edit-post").css('visibility', 'hidden');
+  });
+  
+  $jx("li.comment").mouseover(function() {
+    $jx(this).find("span.edit-comment").css('visibility', 'visible');
+  }).mouseout(function(){
+    $jx(this).find("span.edit-comment").css('visibility', 'hidden');
+  });
+</script> 
+
+<script type="text/javascript" charset="utf-8">
+var $j = jQuery.noConflict();
+  $j(document).ready(function(){  
+    $j('.tipsytext').tipsy({gravity:'n',fade:true,offset:0,opacity:1});
+   });
+   </script> 
+
+  
+	
+<p id="copyright" style="margin-top:20px;"><small>megatool for Mega.co.nz</small></p> 
+      
+		  
+
+          	<!--END .container-->  
+	</div> 
+
+ 
+		
+		<!--END .footer-->
+		</div>
+
+<!--END body-->  
+
+</body>
+</html>
