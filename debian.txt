@@ -5086,6 +5086,9 @@ echo "ServerName localhost" >> /etc/apache2/apache2.conf
 http://albertolarripa.com/2013/07/10/megatools-synchronizing-your-backups-to-mega/
 
 ===========================
+  список  файлов, которые
+   принадлежат пакету
+===========================
+ dpkg -L package
 
 ===========================
-
