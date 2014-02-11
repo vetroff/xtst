@@ -5059,18 +5059,13 @@ https://www.facebook.com/statuscake/posts/328548963920829
 https://www.statuscake.com/API/Locations/txt
 
 ===========================
- 
   mz - packet generator
-
 ===========================
 
  mz - a fast versatile packet generator
 
-
 ===========================
-
         backups
-        
 ===========================
 
 /etc/webmin/mysql/backup.pl --all
@@ -5085,7 +5080,12 @@ Could not reliably determine
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 ===========================
-        
-        
+ megatool  for  mega.co.nz
+===========================
+
+http://albertolarripa.com/2013/07/10/megatools-synchronizing-your-backups-to-mega/
+
+===========================
+
 ===========================
 
