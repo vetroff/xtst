@@ -5074,6 +5074,8 @@ https://www.statuscake.com/API/Locations/txt
 /home/vis/backups/scripts/bckp_create > /dev/null 2>&1
 lftp -f /home/vis/backups/scripts/bckp_transfer > /dev/null 2>&1
 
+---------------------------
+
 ===========================
         apache2
 Could not reliably determine
@@ -5081,11 +5083,15 @@ Could not reliably determine
 
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
+---------------------------
+
 ===========================
  megatool  for  mega.co.nz
 ===========================
 
 http://albertolarripa.com/2013/07/10/megatools-synchronizing-your-backups-to-mega/
+
+---------------------------
 
 ===========================
   список  файлов, которые
@@ -5093,4 +5099,12 @@ http://albertolarripa.com/2013/07/10/megatools-synchronizing-your-backups-to-meg
 ===========================
  dpkg -L package
 
+---------------------------
+
 ===========================
+The certificate of «raw.github.com» is not trusted.
+===========================
+
+apt-get install ca-certificates
+
+---------------------------
