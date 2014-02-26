@@ -5112,7 +5112,10 @@ apt-get install ca-certificates
 ===========================
     nano & numpad
 ===========================
-set/unset:
+nano /etc/nanorc
+
+# set/unset:
 rebindkeypad
+
 *Interpret the numeric keypad keys so that they all work properly.
 ---------------------------
