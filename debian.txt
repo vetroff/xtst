@@ -5119,3 +5119,21 @@ set rebindkeypad
 
 *Interpret the numeric keypad keys so that they all work properly.
 ---------------------------
+
+===========================
+       locale
+===========================
+* view current locale
+locale
+
+*issue:
+LANG=
+LC_CTYPE=«POSIX»
+....
+
+*solution
+echo "export LC_ALL=ru_RU.UTF-8" >> ~/.bashrc
+
+nano ~/.bashrc
+export LC_ALL=ru_RU.UTF-8
+---------------------------
