@@ -5151,3 +5151,11 @@ export LC_ALL=ru_RU.UTF-8
 cat /etc/vsftpd.conf | grep -v ^#
 
 ---------------------------
+
+===========================
+   Iceweasel Profiles
+===========================
+создать  ярлык с параметрами
+
+iceweasel -no-remote -ProfileManager
+---------------------------
