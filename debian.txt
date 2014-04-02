@@ -42,6 +42,18 @@ nano ~/.ssh/authorized_keys
 
 nano /etc/ssh/sshd_config
 
+---
+для  не root-пользователя
+---
+
+mkdir ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+nano ~/.ssh/authorized_keys
+
+nano /etc/ssh/sshd_config
+
 --------------------------------------
 
 Could not load host key: /etc/ssh/ssh_host_ecdsa_key
