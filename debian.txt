@@ -28,6 +28,7 @@ echo "alias agp='apt-get purge'" >> ~/.bashrc
 echo "alias ac='apt-cache'" >> ~/.bashrc
 echo "alias apt='aptitude'" >> ~/.bashrc
 
+alias h='history'
 ======================================
 
        ssh key autorization      
@@ -62,7 +63,6 @@ ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ''
 
 --------------------------------------
 
-
 mkdir /usr/local/custom
 cd /usr/local/custom
 wget http://nl.xsrv.tk/files/cst/cfly
@@ -89,6 +89,36 @@ nano /etc/inittab
 
 wget --no-check-certificate
 
+==========================
+
+        sudo
+
+==========================
+apt-get install sudo
+
+редактирование прав доступа пользователей:
+
+visudo  
+
+или
+
+nano /etc/sudoers
+
+разрешить пользователю test все  команды:
+
+test ALL=(ALL) ALL
+
+разрешить  только  apt-get  и apt-cache:
+
+vis     ALL=/usr/bin/apt-get, /usr/bin/apt-cache
+
+* справка
+man sudo
+man sudoers
+
+Sudo Aliases and Exclusions
+
+http://www.onlamp.com/pub/a/bsd/2002/09/12/Big_Scary_Daemons.html
 ==========================
 
       выбор зеркала
