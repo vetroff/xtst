@@ -47,7 +47,7 @@ nano /etc/ssh/sshd_config
 
 ChallengeResponseAuthentication no
 PasswordAuthentication no
-UsePAM no
+UsePAM yes
 
 ---
 правада для  не root-пользователя  отличаются:
