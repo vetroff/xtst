@@ -43,8 +43,14 @@ nano ~/.ssh/authorized_keys
 
 nano /etc/ssh/sshd_config
 
+и  приводим  настройки к слежующему виду:
+
+ChallengeResponseAuthentication no
+PasswordAuthentication no
+UsePAM no
+
 ---
-для  не root-пользователя
+правада для  не root-пользователя  отличаются:
 ---
 
 mkdir ~/.ssh
@@ -74,6 +80,7 @@ ln -s /usr/local/custom/* /usr/local/bin/
 cd ~
 clr
 
+настройки сетевого соединения для KVM:
 
 echo 'net.core.rmem_max=16777216' >> /etc/sysctl.conf
 echo 'net.core.wmem_max=16777216' >> /etc/sysctl.conf
