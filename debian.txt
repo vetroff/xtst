@@ -27,8 +27,19 @@ echo "alias agr='apt-get remove'" >> ~/.bashrc
 echo "alias agp='apt-get purge'" >> ~/.bashrc
 echo "alias ac='apt-cache'" >> ~/.bashrc
 echo "alias apt='aptitude'" >> ~/.bashrc
+echo "alias h='history'" >> ~/.bashrc
 
+nano ~/.bashrc
+
+alias ag='apt-get'
+alias agu='apt-get update'
+alias agi='apt-get install'
+alias agr='apt-get remove'
+alias agp='apt-get purge'
+alias ac='apt-cache'
+alias apt='aptitude'
 alias h='history'
+
 ======================================
 
        ssh key autorization      
