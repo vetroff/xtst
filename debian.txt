@@ -5242,4 +5242,8 @@ iceweasel -no-remote -ProfileManager
 
 /usr/sbin/synaptic
 
+еще  менеджер пакетов
+
+apt-get install gdebi
+
 ---------------------------
