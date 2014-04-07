@@ -5264,3 +5264,12 @@ apt-get install gnome-tweak-tool
 gnome-tweak-tool
 ---------------------------
 
+===========================
+     gtk-engine
+===========================
+установка  gtk-engines  и
+Murrine Engine 
+
+apt-get install gtk2-engines
+apt-get install gtk2-engines-murrine
+
