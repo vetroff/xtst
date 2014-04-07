@@ -5258,4 +5258,9 @@ GNOME Tweak Tool — Настройка Ubuntu Linux
 имеет  функцию настройки шрифтов
 
 apt-get install gnome-tweak-tool
+
+вызов командой:
+
+gnome-tweak-tool
 ---------------------------
+
