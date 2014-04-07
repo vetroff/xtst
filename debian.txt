@@ -5254,4 +5254,8 @@ apt-get install gdebi
 
 fc-cache -rv
 
+GNOME Tweak Tool — Настройка Ubuntu Linux
+имеет  функцию настройки шрифтов
+
+apt-get install gnome-tweak-tool
 ---------------------------
