@@ -5247,3 +5247,11 @@ iceweasel -no-remote -ProfileManager
 apt-get install gdebi
 
 ---------------------------
+===========================
+   очистка кэша шрифтов   
+    clear font cache
+===========================
+
+fc-cache -rv
+
+---------------------------
