@@ -5296,7 +5296,7 @@ nano /etc/fstab
  paste in the following line:
 /swapfile       none    swap    sw      0       0 
 
-*Swappiness in the file should be set to 10.
+*swappiness in the file should be set to 10.
 Skipping this step may cause both poor performance,
 whereas setting it to 10 will cause swap to act as
 an emergency buffer, preventing out-of-memory crashes.
@@ -5305,4 +5305,11 @@ You can do this with the following commands:
 
 echo 10 | sudo tee /proc/sys/vm/swappiness
 echo vm.swappiness = 10 | sudo tee -a /etc/sysctl.conf
+
+*To prevent the file from being world-readable,
+you should set up the correct permissions on the swap file: 
+
+chown root:root /swapfile
+chmod 0600 /swapfile
+
 
