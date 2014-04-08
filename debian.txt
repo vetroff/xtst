@@ -5273,3 +5273,36 @@ Murrine Engine
 apt-get install gtk2-engines
 apt-get install gtk2-engines-murrine
 
+===========================
+    Digitalocean SWAP
+===========================
+http://bit.ly/P79wAg
+
+*check if any swap files have been enabled on the VPS
+swapon -s
+
+*create the swap file itself using the dd command :
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=256k
+
+*prepare the swap file by creating a linux swap area:
+mkswap /swapfile
+
+*activating the swap file:
+swapon /swapfile
+
+*adding SWAP it to the fstab file.
+nano /etc/fstab
+
+ paste in the following line:
+/swapfile       none    swap    sw      0       0 
+
+*Swappiness in the file should be set to 10.
+Skipping this step may cause both poor performance,
+whereas setting it to 10 will cause swap to act as
+an emergency buffer, preventing out-of-memory crashes.
+
+You can do this with the following commands:
+
+echo 10 | sudo tee /proc/sys/vm/swappiness
+echo vm.swappiness = 10 | sudo tee -a /etc/sysctl.conf
+
