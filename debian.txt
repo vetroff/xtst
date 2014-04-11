@@ -100,7 +100,7 @@ echo 'net.ipv4.tcp_wmem=4096 65536 16777216' >> /etc/sysctl.conf
 sysctl -p
 
 
-apt-get install -y nano htop iftop mtr-tiny vnstat rcconf
+apt-get install -y nano htop iftop mtr-tiny vnstat rcconf dnsutils
 
 
 nano /etc/inittab
