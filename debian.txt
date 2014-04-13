@@ -159,9 +159,7 @@ chmod 600 ~/.netrc
 apt-get install -y apt-spy
 apt-spy -d wheezy -a north-america
 apt-spy -d wheezy -a europe
-apt-spy -d wheezy -s de
 apt-spy -d wheezy -s ua
-apt-spy -d wheezy -s ru
 
 
 nano /etc/apt/sources.list.d/apt-spy.list
