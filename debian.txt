@@ -13,6 +13,8 @@ rm /etc/motd
 touch /etc/motd
 chattr +i /etc/motd
 
+chattr: команда не найдена
+apt-get install e2fsprogs
 ------------------------------------
 
 echo "alias ag='apt-get'" >> ~/.bashrc
