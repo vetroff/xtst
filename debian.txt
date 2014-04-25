@@ -32,13 +32,14 @@ export TERM=xterm-256color
 export EDITOR=nano
 
 alias ag='apt-get'
-alias agu='apt-get update'
+alias agup='apt-get update'
+alias agug='apt-get update'
 alias agi='apt-get install'
 alias agr='apt-get remove'
 alias agp='apt-get purge'
+alias ac='apt-cache search'
 alias ac='apt-cache'
 alias apt='aptitude'
-alias h='history'
 
 alias pstop='service 3proxy stop'
 alias pstart='service 3proxy start'
