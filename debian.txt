@@ -5319,4 +5319,31 @@ you should set up the correct permissions on the swap file:
 chown root:root /swapfile
 chmod 0600 /swapfile
 
+===========================
+         ioping
+===========================
+
+ wget https://ioping.googlecode.com/files/ioping-0.8.tar.gz
+ tar zxvf ioping-0.8.tar.gz
+ cd ioping-0.8
+ make
+ make install
+ 
+ если  надо,  то доустановить:
+ 
+ apt-get install g++
+
+использование
+
+ioping /dev/vda6 -c 10 
+
+доп.информация:
+
+http://code.google.com/p/ioping/
+
+Как правильно мерять производительность диска
+
+http://habrahabr.ru/post/154235/
+
+-----------------------------
 
