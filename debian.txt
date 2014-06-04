@@ -95,6 +95,8 @@ ln -s /usr/local/custom/* /usr/local/bin/
 cd ~
 clr
 
+--------------------------------------
+
 настройки сетевого соединения для KVM:
 
 echo 'net.core.rmem_max=16777216' >> /etc/sysctl.conf
@@ -103,6 +105,20 @@ echo 'net.ipv4.tcp_rmem=4096 87380 16777216' >> /etc/sysctl.conf
 echo 'net.ipv4.tcp_wmem=4096 65536 16777216' >> /etc/sysctl.conf
 sysctl -p
 
+additional
+
+echo 'net.core.rmem_default=2097152' >> /etc/sysctl.conf
+echo 'net.core.wmem_max=2097152' >> /etc/sysctl.conf
+
+echo 'net.ipv4.tcp_timestamps=0' >> /etc/sysctl.conf
+
+check if these do not set as default
+
+echo 'net.ipv4.tcp_sack=1' >> /etc/sysctl.conf
+echo 'net.ipv4.tcp_window_scaling=1' >> /etc/sysctl.conf
+
+
+--------------------------------------
 
 apt-get install -y nano htop iftop mtr-tiny vnstat rcconf dnsutils
 
