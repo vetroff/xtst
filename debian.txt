@@ -1363,6 +1363,10 @@ dpkg --get-selections | grep mc
 
 цвета
 
+256 цветов в терминале
+
+http://habrahabr.ru/post/161999/
+
 https://www.midnight-commander.org/wiki/doc/common/skins
 
 http://plug-and-pray.blogspot.com/2009/09/editing-midnight-commanders-color.html
@@ -5363,5 +5367,12 @@ http://code.google.com/p/ioping/
 
 http://habrahabr.ru/post/154235/
 
------------------------------
+
+#################################
+
+edit this file
+
+http://j.mp/debtips
+
+#################################
 
