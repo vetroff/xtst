@@ -1363,6 +1363,8 @@ dpkg --get-selections | grep mc
 
 цвета
 
+https://www.midnight-commander.org/wiki/doc/common/skins
+
 http://plug-and-pray.blogspot.com/2009/09/editing-midnight-commanders-color.html
 
 --------------------------------
