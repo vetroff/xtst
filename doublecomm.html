@@ -7,7 +7,23 @@
 <link rel="stylesheet" href="/files/css/styles.css">
 <body>
 <div id="main">
-555
+Создадим файл репозитория для Double Commander
+
+nano /etc/apt/sources.list.d/doublecmd-wheezy.list
+
+Добавляем репозиторий (для Debian Wheezy  прямого  репозитория  нет,  но  совместим таковой для Ubuntu Precise):
+
+deb http://ppa.launchpad.net/alexx2000/doublecmd/ubuntu precise main
+deb-src http://ppa.launchpad.net/alexx2000/doublecmd/ubuntu precise main
+
+Добавляем ключ и обновляем репозитории:
+
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 10B3F6FDBE35DEDD
+apt-get update
+
+Непосредственно  сама  установка:
+
+apt-get install doublecmd-gtk
 </div>
 </body>
 </html>
