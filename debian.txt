@@ -1002,7 +1002,7 @@ eaccelerator.allowed_admin_path = "/var/www/eaccelerator"
 
 location /phpmyadmin {
         proxy_pass         http://127.0.0.1:81/phpmyadmin/;
-        allow 109.207.123.43;
+        allow 000.000.000.000;
         deny all;
         }
 
@@ -1013,7 +1013,7 @@ ExtendedStatus On
     SetHandler server-status
     Order deny,allow
     Deny from all
-    Allow from 109.207.123.43
+    Allow from 000.000.000.000
 </Location>
 
 
@@ -1021,25 +1021,9 @@ ExtendedStatus On
     SetHandler server-status
     Order deny,allow
     Deny from all
-    Allow from109.207.112
-    Allow from109.207.113
-    Allow from109.207.114
-    Allow from109.207.115
-    Allow from109.207.116
-    Allow from109.207.117
-    Allow from109.207.118
-    Allow from109.207.119
-    Allow from109.207.120
-    Allow from109.207.121
-    Allow from109.207.122
-    Allow from109.207.123
-    Allow from109.207.124
-    Allow from109.207.125
-    Allow from109.207.126
-    Allow from109.207.127
+    Allow from 000.000.000.000
+    
 </Location>
-
-109.207.112.0 - 109.207.127.255
 
 
 
@@ -1733,25 +1717,6 @@ chown -R www-data:www-data /var/www/rutorrent/plugins/
 
 
 
-==========================================
-
-               TCPDUMP
-
-==========================================
-
-tcpdump -n -i eth0 src 76.74.242.153
-tcpdump -n -i eth0 dst 76.74.242.153
-
-tcpdump -n -i eth0 src 173.208.152.209
-tcpdump -n -i eth0 dst 173.208.152.209
-
-tcpdump -n -i eth0 dst 173.208.152.209 and port 80
-
-tcpdump -n -i eth0 dst port 80
-
-tcpdump -i venet0:0 dst 212.117.191.67 and port 22
-
-
 ============================================
 
               CSF   фаервол
@@ -1902,34 +1867,6 @@ location /u/ {
 
 
 ==========================================
-
-
-
-==============================
-
-	  роутинг
-
-==============================
-
-
-ip -4  route show
-ip -6  route show
-
-
-ip -6 addr add 2a01:1b0:705:87:238:175:123:a/64 dev eth0
-ip -6 addr del 2a01:1b0:705:87:238:175:123:a/64 dev eth0
-
-==============================
-
-
-
-===============================
-
-         iftop
-
-================================
-
-apt-get install libcap-dev libncurses5-dev libpcap0.8-dev
 
 
 
@@ -4940,17 +4877,6 @@ wget http://vestacp.com/pub/vst-install.sh
 # Run it
 bash vst-install.sh
 
--------------------------------
-  https://217.12.199.125:8083
-  username: admin
-  password: bLhXPnGQvV
--------------------------------
-
--------------------------------
-  https://207.234.139.45:8083
-  username: admin
-  password: iP4x7UbTp8
--------------------------------
 
 для установки на сервер с 128Mb памяти:
 
@@ -5369,8 +5295,6 @@ http://habrahabr.ru/post/154235/
 
 
 #################################
-
-edit
 
 http://j.mp/debtips
 
