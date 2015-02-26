@@ -86,10 +86,10 @@ ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ''
 
 mkdir /usr/local/custom
 cd /usr/local/custom
-wget http://nl.xsrv.tk/files/cst/cfly
-wget http://nl.xsrv.tk/files/cst/clr
-wget http://nl.xsrv.tk/files/cst/disk
-wget http://nl.xsrv.tk/files/cst/vpstest
+wget http://ua.xsrv.tk/files/cst/cfly
+wget http://ua.xsrv.tk/files/cst/clr
+wget http://ua.xsrv.tk/files/cst/disk
+wget http://ua.xsrv.tk/files/cst/vpstest
 chmod -R  777 /usr/local/custom
 ln -s /usr/local/custom/* /usr/local/bin/
 cd ~
