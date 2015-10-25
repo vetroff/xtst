@@ -1,0 +1,5 @@
+#! /bin/sh
+
+wget -O /dev/null  http://cachefly.cachefly.net/100mb.test
+
+exit 0
