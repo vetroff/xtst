@@ -25,6 +25,8 @@ echo "alias agp='apt-get purge'" >> ~/.bashrc
 echo "alias ac='apt-cache'" >> ~/.bashrc
 echo "alias apt='aptitude'" >> ~/.bashrc
 echo "alias h='history'" >> ~/.bashrc
+echo "alias nginxtest='systemctl status nginx.service'" >> ~/.bashrc
+echo "alias apache2test='systemctl status apache2.service'" >> ~/.bashrc
 
 nano ~/.bashrc
 
