@@ -25,8 +25,8 @@ echo "alias agp='apt-get purge'" >> ~/.bashrc
 echo "alias ac='apt-cache'" >> ~/.bashrc
 echo "alias apt='aptitude'" >> ~/.bashrc
 echo "alias h='history'" >> ~/.bashrc
-echo "alias nginxtest='systemctl status nginx.service'" >> ~/.bashrc
-echo "alias apache2test='systemctl status apache2.service'" >> ~/.bashrc
+echo "alias nginxt='systemctl status nginx.service'" >> ~/.bashrc
+echo "alias apache2t='systemctl status apache2.service'" >> ~/.bashrc
 
 nano ~/.bashrc
 
@@ -44,6 +44,11 @@ alias h='history'
 
 alias nginxr='/etc/init.d/nginx restart'
 alias php5r='/etc/init.d/php5-fpm restart'
+alias apache2t='/etc/init.d/apache2 restart'
+
+alias nginxt='systemctl status nginx.service'
+alias php5r='systemctl status php5-fpm.service'
+alias apache2t='systemctl status apache2.service'
 
 alias pstop='service 3proxy stop'
 alias pstart='service 3proxy start'
