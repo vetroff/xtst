@@ -46,6 +46,13 @@ alias pstop='service 3proxy stop'
 alias pstart='service 3proxy start'
 
 ======================================
+  
+              VPS Test
+
+======================================
+wget --no-check-certificate https://freevps.us/downloads/bench.sh -O - -o /dev/null|bash
+
+======================================
 
        ssh key autorization      
 
