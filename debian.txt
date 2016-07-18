@@ -44,10 +44,10 @@ alias h='history'
 
 alias nginxr='/etc/init.d/nginx restart'
 alias php5r='/etc/init.d/php5-fpm restart'
-alias apache2t='/etc/init.d/apache2 restart'
+alias apache2r='/etc/init.d/apache2 restart'
 
 alias nginxt='systemctl status nginx.service'
-alias php5r='systemctl status php5-fpm.service'
+alias php5t='systemctl status php5-fpm.service'
 alias apache2t='systemctl status apache2.service'
 
 alias pstop='service 3proxy stop'
