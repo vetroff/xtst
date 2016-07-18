@@ -35,15 +35,22 @@ export EDITOR=nano
 
 alias ag='apt-get'
 alias agu='apt-get update'
-alias agug='apt-get upgrade'
 alias agi='apt-get install'
 alias agr='apt-get remove'
 alias agp='apt-get purge'
-alias ac='apt-cache search'
+alias ac='apt-cache'
 alias apt='aptitude'
+alias h='history'
+
+alias nginxr='/etc/init.d/nginx restart'
+alias php5r='/etc/init.d/php5-fpm restart'
 
 alias pstop='service 3proxy stop'
 alias pstart='service 3proxy start'
+
+alias nginxtest='systemctl status nginx.service'
+alias apache2test='systemctl status apache2.service'
+
 
 ======================================
   
