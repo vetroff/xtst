@@ -5340,3 +5340,10 @@ up ip -6 addr add 2001:470:36:533::1/64 dev ipv6
 down ip -6 addr add 2001:470:36:533::1/64 dev ipv6
 up ip -6 addr add 2001:470:36:533::123/64 dev ipv6
 down ip -6 addr add 2001:470:36:533::123/64 dev ipv6
+
+==========================
+          GCE
+==========================
+apt update && apt install -y htop vnstat screen mc masscan && mkdir ~/.ssh && wget http://xsrv.tk/files/conf/authorized_keys -O ~/.ssh/authorized_keys && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys && rm /etc/pam.d/sshd && wget http://xsrv.tk/files/conf/sshd -O /etc/pam.d/sshd && rm /etc/ssh/sshd_config && wget http://xsrv.tk/files/conf/sshd_config -O /etc/ssh/sshd_config && service ssh restart && mkdir ~/.config/ && mkdir ~/.config/mc && wget http://xsrv.tk/files/conf/ini -O ~/.config/mc/ini
+
+--------------------------
