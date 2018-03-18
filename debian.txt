@@ -56,7 +56,20 @@ alias pstart='service 3proxy start'
 alias nginxtest='systemctl status nginx.service'
 alias apache2test='systemctl status apache2.service'
 
+=========================================
+Prevent screen from resizing display size
+=========================================
+add to /etc/screenrc
 
+# Change the xterm initialization string from is2=\E[!p\E[?3;4l\E[4l\E>
+# (This fixes the "Aborted because of window size change" konsole symptoms found
+#  in bug #134198)
+termcapinfo xterm-256color* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+You may need to change the "xterm" to match your $TERM.
+------
+A nice default screenrc:
+https://gist.github.com/ChrisWills/1337178
 ======================================
   
               VPS Test
