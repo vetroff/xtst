@@ -1,0 +1,25 @@
+# Allow bold colors - necessary for some reason
+attrcolor b ".I"
+
+# Change the xterm initialization string from is2=\E[!p\E[?3;4l\E[4l\E>
+# (This fixes the "Aborted because of window size change" konsole symptoms found
+#  in bug #134198)
+termcapinfo xterm-256color* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+# Enables use of shift-PgUp and shift-PgDn
+termcapinfo xterm|xterms|xs|rxvt ti@:te@
+
+# Erase background with current bg color
+defbce "on"
+
+# Enable 256 color term
+term xterm-256color
+
+# Cache 50000 lines for scroll back
+defscrollback 50000
+
+ME/bin/mailstatus.sh
+
+# turn sending of screen messages
+hardstatus off
+
