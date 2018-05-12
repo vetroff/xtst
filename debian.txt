@@ -1349,6 +1349,9 @@ echo 'export TERM=xterm-256color' >> ~/.bash_profile
 
 /usr/local/mc/bin/mc - запуск mc
 
+
+wget http://xsrv.tk/files/conf/ini -O ~/.config/mc/ini && rm /usr/share/mc/skins/gotar.ini && wget http://xsrv.tk/files/conf/gotar.ini -O /usr/share/mc/skins/gotar.ini
+
 -------
 
 cd /usr/local/mc/share/mc/skins
