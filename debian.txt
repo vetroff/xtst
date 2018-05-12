@@ -78,6 +78,12 @@ https://gist.github.com/ChrisWills/1337178
 wget --no-check-certificate https://freevps.us/downloads/bench.sh -O - -o /dev/null|bash
 
 ======================================
+    How to prefer IPv4 over IPv6
+======================================
+nano /etc/gai.conf
+uncoment
+precedence ::ffff:0:0/96  100
+======================================
 
        ssh key autorization      
 
