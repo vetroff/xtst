@@ -156,6 +156,12 @@ check if these do not set as default
 echo 'net.ipv4.tcp_sack=1' >> /etc/sysctl.conf
 echo 'net.ipv4.tcp_window_scaling=1' >> /etc/sysctl.conf
 
+=================================
+ iptables block access to port
+=================================
+
+iptables -A INPUT -p tcp --dport 8000 -s 8.7.6.5 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8000 -j DROP
 
 --------------------------------------
 
