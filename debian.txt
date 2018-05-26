@@ -62,10 +62,9 @@ https://gist.github.com/ChrisWills/1337178
 wget https://cdn.rawgit.com/vetroff/xtst/gh-pages/ini -O ~/.config/mc/ini && rm /usr/share/mc/skins/gotar.ini && \
 wget https://cdn.rawgit.com/vetroff/xtst/gh-pages/gotar.ini -O /usr/share/mc/skins/gotar.ini
 
-
 =============================
          VPS Test
-============================
+=============================
 wget --no-check-certificate https://freevps.us/downloads/bench.sh -O - -o /dev/null|bash
 
 ======================================
@@ -74,10 +73,9 @@ wget --no-check-certificate https://freevps.us/downloads/bench.sh -O - -o /dev/n
 nano /etc/gai.conf
 uncoment
 precedence ::ffff:0:0/96  100
+
 ======================================
-
-       ssh key autorization      
-
+        ssh key autorization      
 ======================================
 
 mkdir ~/.ssh
