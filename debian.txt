@@ -16,6 +16,11 @@ chattr +i /etc/motd
 chattr: команда не найдена
 apt-get install e2fsprogs
 ------------------------------------
+   fastest debian mirror
+------------------------------------
+apt install netselect-apt
+netselect-apt -c netherlands -t 15 -a amd64 -n stable
+------------------------------------
 
 echo "alias h='history'" >> ~/.bashrc
 echo "alias nginxt='systemctl status nginx.service'" >> ~/.bashrc
