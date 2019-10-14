@@ -166,6 +166,24 @@ nano /etc/inittab
 
 wget --no-check-certificate
 
+
+==========================
+
+      KVM Swap RAM 
+    
+==========================
+
+The Linux kernel underlying Ubuntu will automatically "swap in" those pages from disk to RAM as needed, so in general I'd say just let it happen naturally.
+
+However, if you really feel that you need to force it, (I can see a scenario where you would want to know the system will be responsive later) you can momentarily disable and re-enable swap
+
+sudo swapoff -a
+sudo swapon -a
+
+OR alternatively as a single line
+
+swapoff -a; swapon -a
+
 ==========================
 
         sudo
