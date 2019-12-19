@@ -150,6 +150,17 @@ check if these do not set as default
 echo 'net.ipv4.tcp_sack=1' >> /etc/sysctl.conf
 echo 'net.ipv4.tcp_window_scaling=1' >> /etc/sysctl.conf
 
+
+=================================
+            IP Tables
+=================================
+Why do iptables rules disappear when restarting my Debian system?
+
+https://bit.ly/35GUt89
+
+
+
+
 =================================
  iptables block access to port
 =================================
