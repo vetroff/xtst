@@ -158,9 +158,6 @@ Why do iptables rules disappear when restarting my Debian system?
 
 https://bit.ly/35GUt89
 
-
-
-
 =================================
  iptables block access to port
 =================================
